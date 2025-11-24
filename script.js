@@ -135,4 +135,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+/* ===== MENU MOBILE ===== */
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.querySelector('.mobile-nav');
+
+hamburger.addEventListener('click', () => {
+  mobileNav.classList.toggle('open'); // mostra/nascondi menu mobile
+});
+
+/* ===== ACCORDION TIMELINE ===== */
+document.querySelectorAll('.timeline-item').forEach(item => {
+  const card = item.querySelector('.timeline-card');
+  
+  item.addEventListener('mouseenter', () => card.classList.add('expanded'));
+  item.addEventListener('mouseleave', () => card.classList.remove('expanded'));
+
+  card.addEventListener('click', e => e.preventDefault()); // click non fa nulla
+});
+
+  
 }); // DOMContentLoaded
