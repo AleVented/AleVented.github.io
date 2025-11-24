@@ -1,72 +1,149 @@
-<!-- Portfolio iniziale, da migliorare con logo e palette blu eleganti -->
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alessio Ventura – Portfolio</title>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body { font-family: Arial, sans-serif; line-height: 1.7; background-color: #f4f7fc; color: #1a1a1a; }
-
-        /* Palette blu elegante */
+        /* PALETTE MODERNA, ELEGANTE, SCURA (NAVY THEME) */
         :root {
-            --primary: #1e3a5f; /* Blu elegante scuro */
-            --secondary: #3f5a7a; /* Blu medio */
-            --accent: #a3b8d4; /* Blu chiaro */
-            --light-bg: #f4f7fc; /* Sfondo chiaro */
-            --text-dark: #1a1a1a;
-            --text-light: #ffffff;
+            --bg-dark: #0a1a33;        /* Sfondo principale navy molto scuro */
+            --bg-soft: #112544;        /* Sezioni */
+            --primary: #28527a;        /* Blu moderno elegante */
+            --accent: #4f81c7;         /* Accenti blu chiari */
+            --text-light: #e6eef8;     /* Testo chiaro */
+            --text-soft: #c4d0e3;      /* Testo meno intenso */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
         }
 
         /* NAVBAR */
         nav {
-            width: 100%; background-color: var(--primary); padding: 20px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 999;
+            width: 100%;
+            background-color: var(--bg-soft);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-        nav h1 { font-size: 1.4rem; font-weight: bold; color: var(--text-light); }
+        nav .logo svg {
+            height: 38px;
+        }
 
-        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 22px;
+        }
 
-        nav ul li a { text-decoration: none; color: var(--text-light); font-weight: 500; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+        }
 
         /* HERO */
-        .hero { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-
-        .hero h2 { font-size: 2.5rem; margin-bottom: 15px; color: var(--primary); }
-
-        /* SEZIONI */
-        section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
-
-        h3.section-title {
-            font-size: 1.8rem; margin-bottom: 15px; border-left: 5px solid var(--secondary);
-            padding-left: 10px; color: var(--primary);
+        .hero {
+            max-width: 900px;
+            margin: 70px auto;
+            padding: 0 20px;
         }
 
-        ul.skills { margin-top: 15px; list-style: square; padding-left: 20px; }
+        .hero h2 {
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
 
-        /* CARDS PROGETTI */
+        .hero p {
+            color: var(--text-soft);
+            font-size: 1.15rem;
+        }
+
+        /* SECTION */
+        section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        h3.section-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
+            padding-left: 10px;
+            color: var(--accent);
+        }
+
+        p, li {
+            color: var(--text-soft);
+        }
+
+        ul.skills {
+            margin-top: 15px;
+            list-style: square;
+            padding-left: 20px;
+        }
+
+        /* PROJECT CARDS */
         .projects-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px; margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .project-card {
-            background-color: white; padding: 20px; border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.08); transition: 0.2s;
+            background-color: var(--bg-soft);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+            transition: 0.2s;
         }
 
-        .project-card:hover { transform: translateY(-4px); }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
 
-        footer { text-align: center; padding: 40px; margin-top: 50px; color: var(--secondary); }
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            color: var(--text-soft);
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- NAVBAR CON LOGO SVG PREMIER -->
     <nav>
-        <h1>AV</h1>
+        <div class="logo">
+            <!-- SVG premium monocromatico navy -->
+            <svg width="200" height="50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <style>
+                        .stroke { stroke: #4f81c7; stroke-linecap: round; stroke-linejoin: round; }
+                    </style>
+                </defs>
+                <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none" />
+                <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none" />
+            </svg>
+        </div>
+
         <ul>
             <li><a href="#about">Chi sono</a></li>
             <li><a href="#skills">Competenze</a></li>
@@ -75,34 +152,54 @@
         </ul>
     </nav>
 
+    <!-- HERO -->
     <div class="hero">
         <h2>Progettista Elettrico & Automazione</h2>
-        <p>Esperienza in progettazione elettrica industriale, automazione e programmazione PLC...</p>
+        <p>
+            Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
+            Background tecnico in meccatronica e software industriali.
+        </p>
     </div>
 
+    <!-- ABOUT -->
     <section id="about">
         <h3 class="section-title">Chi sono</h3>
-        <p>Ciao! Sono Alessio, 24 anni...</p>
+        <p>
+            Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
+            Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
+        </p>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
         <h3 class="section-title">Competenze</h3>
         <ul class="skills">
             <li>Progettazione elettrica industriale</li>
             <li>Programmazione PLC</li>
             <li>Automazione industriale</li>
-            <li>CAD elettrico</li>
+            <li>Cad elettrico</li>
+            <li>Python (strumenti e analisi dati)</li>
         </ul>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
         <h3 class="section-title">Progetti</h3>
         <p>I progetti saranno aggiunti presto.</p>
+
+        <div class="projects-container">
+            <div class="project-card">
+                <h4 style="color: var(--accent);">📌 Esempio Progetto</h4>
+                <p>Card dimostrativa.</p>
+            </div>
+        </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
         <h3 class="section-title">Contatti</h3>
         <p>Email: inserisci_la_tua_email</p>
+        <p>LinkedIn: inserisci_link</p>
     </section>
 
     <footer>© 2025 – Portfolio di Alessio Ventura</footer>
