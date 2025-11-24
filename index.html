@@ -4,60 +4,90 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alessio Ventura – Portfolio</title>
+
+  <!-- favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- BACKGROUND ANIMATO (contenitore vuoto, le particelle sono create via JS) -->
+  <!-- LOADER -->
+  <div id="site-loader" aria-hidden="true">
+    <div class="loader-wrap">
+      <svg viewBox="0 0 200 200" class="loader-logo" aria-hidden="true">
+        <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
+        <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
+      </svg>
+      <div class="loader-text">ALV • Loading</div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND ANIMATO -->
   <div id="bg-anim" aria-hidden="true"></div>
 
-  <!-- NAVBAR -->
-  <nav class="nav">
-    <div class="nav-left">
-      <button class="nav-burger" id="burger" aria-label="Apri menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
-      <a class="brand" href="#home" aria-label="Home">
-        <!-- LOGO SVG (premium) -->
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="logo" role="img" aria-hidden="true">
-          <title>Logo AV</title>
-          <defs>
-            <style>.stroke{ stroke: #4f81c7; stroke-linecap: round; stroke-linejoin: round; }</style>
-          </defs>
-          <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none" />
-          <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none" />
+  <!-- SIDEBAR -->
+  <aside id="side" class="sidebar" aria-label="Menu laterale">
+    <div class="side-inner">
+      <div class="side-brand">
+        <svg viewBox="0 0 200 200" class="logo" aria-hidden="true">
+          <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
+          <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
         </svg>
-        <span class="brand-text">Alessio Ventura</span>
-      </a>
+        <div class="side-name">Alessio Ventura</div>
+      </div>
+
+      <nav class="side-nav" role="navigation">
+        <a href="#home" class="side-link">Home</a>
+        <a href="#about" class="side-link">Chi sono</a>
+        <a href="#skills" class="side-link">Competenze</a>
+        <a href="#timeline" class="side-link">Esperienze</a>
+        <a href="#projects" class="side-link">Progetti</a>
+        <a href="#contact" class="side-link">Contatti</a>
+      </nav>
+
+      <div class="side-contacts">
+        <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a>
+        <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">Chi sono</a></li>
-      <li><a href="#skills">Competenze</a></li>
-      <li><a href="#projects">Progetti</a></li>
-      <li><a href="#contact">Contatti</a></li>
-    </ul>
+    <button id="sideToggle" class="side-toggle" aria-label="Apri/chiudi menu laterale">☰</button>
+  </aside>
 
-    <div class="nav-actions">
-      <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">🌙</button>
+  <!-- NAVBAR TOP (solo icone e toggle) -->
+  <header class="topbar">
+    <div class="topbar-inner container">
+      <div class="top-left">
+        <button id="hamburger" class="hamburger" aria-label="Apri menu">☰</button>
+        <a class="brand" href="#home" aria-label="Home">
+          <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
+            <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
+            <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
+          </svg>
+          <span class="brand-text">Alessio Ventura</span>
+        </a>
+      </div>
+
+      <div class="top-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">🌙</button>
+      </div>
     </div>
-  </nav>
-
-  <!-- HERO -->
-  <header id="home" class="hero container appear">
-    <h1 class="hero-title">Progettista Elettrico & Automazione</h1>
-    <p class="hero-sub">
-      Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
-      Background tecnico in meccatronica e software industriali.
-    </p>
   </header>
 
-  <!-- DIVIDER -->
-  <div class="divider container"><span class="divider-line"></span></div>
+  <!-- MAIN -->
+  <main class="main">
+    <!-- HERO -->
+    <section id="home" class="hero container appear">
+      <h1 class="hero-title neon">Progettista Elettrico & Automazione</h1>
+      <p class="hero-sub">Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
+        Background tecnico in meccatronica e software industriali.</p>
+    </section>
 
-  <!-- ABOUT -->
-  <main>
+    <div class="divider container"><span>✦</span></div>
+
+    <!-- CHI SONO -->
     <section id="about" class="section container appear">
       <h2 class="section-title">Chi sono</h2>
       <p class="lead">
@@ -67,6 +97,7 @@
       <hr class="section-divider" />
     </section>
 
+    <!-- COMPETENZE -->
     <section id="skills" class="section container appear">
       <h2 class="section-title">Competenze</h2>
       <ul class="skills">
@@ -79,41 +110,72 @@
       <hr class="section-divider" />
     </section>
 
-    <section id="projects" class="section container appear">
-      <h2 class="section-title">Progetti</h2>
-      <p class="lead">I progetti saranno aggiunti presto.</p>
+    <!-- TIMELINE (Esperienze) -->
+    <section id="timeline" class="section container appear">
+      <h2 class="section-title">Esperienze</h2>
 
-      <div class="projects-container">
-        <!-- Card di esempio -->
-        <article class="project-card appear">
-          <div class="card-top">
-            <h3 class="card-title">Esempio Progetto</h3>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-meta">2024 — Presente</div>
+            <h3>Progettista Elettrico</h3>
+            <p>Progettazione impianti elettrici industriali, redazione schemi e specifiche tecniche.</p>
           </div>
-          <p class="card-body">Descrizione sintetica del progetto — quando caricherai i file appariranno qui.</p>
-          <div class="card-footer">
-            <span class="tag">PLC</span>
-            <span class="tag">EPLAN</span>
-          </div>
-        </article>
+        </div>
 
-        <!-- spazio per altre card -->
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-meta">2023 — 2024</div>
+            <h3>Programmatore PLC</h3>
+            <p>Sviluppo logiche su PLC, test su campo e messa in servizio.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-meta">2021 — 2023</div>
+            <h3>ITS Meccatronica & Automazione</h3>
+            <p>Formazione tecnica specializzata in automazione e sistemi industriali.</p>
+          </div>
+        </div>
       </div>
 
       <hr class="section-divider" />
     </section>
 
+    <!-- PROGETTI -->
+    <section id="projects" class="section container appear">
+      <h2 class="section-title">Progetti</h2>
+      <p class="lead">I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.</p>
+
+      <div class="projects-container">
+        <article class="project-card appear">
+          <h3 class="card-title neon">Progetto Demo</h3>
+          <p class="card-body">Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.</p>
+          <div class="card-footer">
+            <span class="tag">PLC</span>
+            <span class="tag">EPLAN</span>
+          </div>
+        </article>
+      </div>
+
+      <hr class="section-divider" />
+    </section>
+
+    <!-- CONTATTI -->
     <section id="contact" class="section container appear">
       <h2 class="section-title">Contatti</h2>
       <p class="lead">Email: <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a></p>
-      <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener">alessio-ventura</a></p>
+      <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank">alessio-ventura</a></p>
       <hr class="section-divider" />
     </section>
   </main>
 
-  <footer class="footer container">
+  <footer class="footer">
     <small>© 2025 – Portfolio di Alessio Ventura</small>
   </footer>
 
+  <!-- JS -->
   <script src="script.js" defer></script>
 </body>
 </html>
