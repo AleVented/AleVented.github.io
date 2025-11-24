@@ -10,19 +10,45 @@
 
         /* PALETTE MODERNA, ELEGANTE, SCURA (NAVY THEME) */
         :root {
-            --bg-dark: #0a1a33;        /* Sfondo principale navy molto scuro */
-            --bg-soft: #112544;        /* Sezioni */
-            --primary: #28527a;        /* Blu moderno elegante */
-            --accent: #4f81c7;         /* Accenti blu chiari */
-            --text-light: #e6eef8;     /* Testo chiaro */
-            --text-soft: #c4d0e3;      /* Testo meno intenso */
+            --bg-dark: #0a1a33;
+            --bg-soft: rgba(17, 37, 68, 0.85);
+            --primary: #28527a;
+            --accent: #4f81c7;
+            --text-light: #e6eef8;
+            --text-soft: #c4d0e3;
         }
 
         body {
             font-family: Arial, sans-serif;
             line-height: 1.7;
-            background-color: var(--bg-dark);
+            background-color: #000;
             color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* SFONDO ANIMATO (PARTICELLE / NEBULA) */
+        .background-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle, #111827, #000);
+            overflow: hidden;
+        }
+
+        .background-animation span {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: rgba(79,129,199,0.5);
+            border-radius: 50%;
+            animation: float 12s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0.2; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-100vh); opacity: 0.1; }
         }
 
         /* NAVBAR */
@@ -35,12 +61,13 @@
             align-items: center;
             position: sticky;
             top: 0;
+            backdrop-filter: blur(6px);
             z-index: 999;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         nav .logo svg {
-            height: 38px;
+            height: 60px; /* logo più grande */
         }
 
         nav ul {
@@ -60,6 +87,10 @@
             max-width: 900px;
             margin: 70px auto;
             padding: 0 20px;
+            background-color: rgba(10, 26, 51, 0.6);
+            border-radius: 15px;
+            backdrop-filter: blur(3px);
+            padding: 30px;
         }
 
         .hero h2 {
@@ -77,7 +108,10 @@
         section {
             max-width: 900px;
             margin: 80px auto;
-            padding: 0 20px;
+            padding: 20px;
+            background-color: rgba(10, 26, 51, 0.6);
+            border-radius: 15px;
+            backdrop-filter: blur(3px);
         }
 
         h3.section-title {
@@ -124,15 +158,50 @@
             margin-top: 50px;
             color: var(--text-soft);
         }
+
+        /* RESPONSIVE (MOBILE) */
+        @media (max-width: 600px) {
+            nav {
+                padding: 15px 20px;
+            }
+            nav .logo svg {
+                height: 50px;
+            }
+            nav ul {
+                gap: 14px;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            section {
+                margin: 40px auto;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR CON LOGO SVG PREMIER -->
+    <!-- SFONDO ANIMATO -->
+    <div class="background-animation">
+        <!-- particelle generate -->
+        <script>
+            for (let i = 0; i < 50; i++) {
+                const s = document.createElement("span");
+                const size = Math.random() * 4 + 2;
+                s.style.width = size + "px";
+                s.style.height = size + "px";
+                s.style.left = Math.random() * 100 + "vw";
+                s.style.top = Math.random() * 100 + "vh";
+                s.style.animationDuration = (8 + Math.random() * 10) + "s";
+                document.querySelector(".background-animation").appendChild(s);
+            }
+        </script>
+    </div>
+
+    <!-- NAVBAR -->
     <nav>
         <div class="logo">
-            <!-- SVG premium monocromatico navy -->
             <svg width="200" height="50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <style>
@@ -175,10 +244,10 @@
         <h3 class="section-title">Competenze</h3>
         <ul class="skills">
             <li>Progettazione elettrica industriale</li>
-            <li>Programmazione PLC</li>
+            <li>Programmazione PLC Siemens/Schneider</li>
             <li>Automazione industriale</li>
-            <li>Cad elettrico</li>
-            <li>Python (strumenti e analisi dati)</li>
+            <li>EPLAN P8</li>
+            <li>Python (livello base)</li>
         </ul>
     </section>
 
@@ -198,8 +267,8 @@
     <!-- CONTACT -->
     <section id="contact">
         <h3 class="section-title">Contatti</h3>
-        <p>Email: inserisci_la_tua_email</p>
-        <p>LinkedIn: inserisci_link</p>
+        <p>Email: ventura2001lavoro@gmail.com</p>
+        <p>LinkedIn: https://www.linkedin.com/in/alessio-ventura-a11547233/</p>
     </section>
 
     <footer>© 2025 – Portfolio di Alessio Ventura</footer>
