@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alessio Venture – Portfolio</title>
+  <title>Alessio Ventura – Portfolio</title>
 
   <!-- favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -27,52 +27,32 @@
   <!-- BACKGROUND ANIMATO -->
   <div id="bg-anim" aria-hidden="true"></div>
 
-  <!-- SIDEBAR -->
-  <aside id="side" class="sidebar" aria-label="Menu laterale">
-    <div class="side-inner">
-      <div class="side-brand">
-        <svg viewBox="0 0 200 200" class="logo" aria-hidden="true">
+  <!-- NAVBAR TOP -->
+  <header class="topbar">
+    <div class="topbar-inner container">
+      <a class="brand" href="#home" aria-label="Home">
+        <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
           <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
           <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
         </svg>
-        <div class="side-name">Alessio Ventura</div>
-      </div>
+        <span class="brand-text">Alessio Ventura</span>
+      </a>
 
-      <nav class="side-nav" role="navigation">
-        <a href="#home" class="side-link">Home</a>
-        <a href="#about" class="side-link">Chi sono</a>
-        <a href="#skills" class="side-link">Competenze</a>
-        <a href="#timeline" class="side-link">Esperienze</a>
-        <a href="#projects" class="side-link">Progetti</a>
-        <a href="#contact" class="side-link">Contatti</a>
+      <nav class="top-nav">
+        <a href="#home">Home</a>
+        <span class="divider">|</span>
+        <a href="#about">Chi sono</a>
+        <span class="divider">|</span>
+        <a href="#skills">Competenze</a>
+        <span class="divider">|</span>
+        <a href="#timeline">Formazione</a>
+        <span class="divider">|</span>
+        <a href="#projects">Progetti</a>
+        <span class="divider">|</span>
+        <a href="#contact">Contatti</a>
       </nav>
 
-      <div class="side-contacts">
-        <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a>
-        <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-
-    <button id="sideToggle" class="side-toggle" aria-label="Apri/chiudi menu laterale">☰</button>
-  </aside>
-
-  <!-- NAVBAR TOP (solo icone e toggle) -->
-  <header class="topbar">
-    <div class="topbar-inner container">
-      <div class="top-left">
-        <button id="hamburger" class="hamburger" aria-label="Apri menu">☰</button>
-        <a class="brand" href="#home" aria-label="Home">
-          <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
-            <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
-            <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
-          </svg>
-          <span class="brand-text">Alessio Ventura</span>
-        </a>
-      </div>
-
-      <div class="top-actions">
-        <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">🌙</button>
-      </div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">🌙</button>
     </div>
   </header>
 
@@ -80,102 +60,4 @@
   <main class="main">
     <!-- HERO -->
     <section id="home" class="hero container appear">
-      <h1 class="hero-title neon">Progettista Elettrico & Automazione</h1>
-      <p class="hero-sub">Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
-        Background tecnico in meccatronica e software industriali.</p>
-    </section>
-
-    <div class="divider container"><span>✦</span></div>
-
-    <!-- CHI SONO -->
-    <section id="about" class="section container appear">
-      <h2 class="section-title">Chi sono</h2>
-      <p class="lead">
-        Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
-        Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
-      </p>
-      <hr class="section-divider" />
-    </section>
-
-    <!-- COMPETENZE -->
-    <section id="skills" class="section container appear">
-      <h2 class="section-title">Competenze</h2>
-      <ul class="skills">
-        <li>Progettazione elettrica industriale</li>
-        <li>Programmazione PLC Siemens / Schneider</li>
-        <li>Automazione industriale</li>
-        <li>EPLAN P8</li>
-        <li>Python (livello base)</li>
-      </ul>
-      <hr class="section-divider" />
-    </section>
-
-    <!-- TIMELINE (Esperienze) -->
-    <section id="timeline" class="section container appear">
-      <h2 class="section-title">Esperienze</h2>
-
-      <div class="timeline">
-        <div class="timeline-item left">
-          <div class="timeline-card">
-            <div class="timeline-meta">2024 — Presente</div>
-            <h3>Progettista Elettrico</h3>
-            <p>Progettazione impianti elettrici industriali, redazione schemi e specifiche tecniche.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item right">
-          <div class="timeline-card">
-            <div class="timeline-meta">2023 — 2024</div>
-            <h3>Programmatore PLC</h3>
-            <p>Sviluppo logiche su PLC, test su campo e messa in servizio.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item left">
-          <div class="timeline-card">
-            <div class="timeline-meta">2021 — 2023</div>
-            <h3>ITS Meccatronica & Automazione</h3>
-            <p>Formazione tecnica specializzata in automazione e sistemi industriali.</p>
-          </div>
-        </div>
-      </div>
-
-      <hr class="section-divider" />
-    </section>
-
-    <!-- PROGETTI -->
-    <section id="projects" class="section container appear">
-      <h2 class="section-title">Progetti</h2>
-      <p class="lead">I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.</p>
-
-      <div class="projects-container">
-        <article class="project-card appear">
-          <h3 class="card-title neon">Progetto Demo</h3>
-          <p class="card-body">Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.</p>
-          <div class="card-footer">
-            <span class="tag">PLC</span>
-            <span class="tag">EPLAN</span>
-          </div>
-        </article>
-      </div>
-
-      <hr class="section-divider" />
-    </section>
-
-    <!-- CONTATTI -->
-    <section id="contact" class="section container appear">
-      <h2 class="section-title">Contatti</h2>
-      <p class="lead">Email: <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a></p>
-      <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank">alessio-ventura</a></p>
-      <hr class="section-divider" />
-    </section>
-  </main>
-
-  <footer class="footer">
-    <small>© 2025 – Portfolio di Alessio Ventura</small>
-  </footer>
-
-  <!-- JS -->
-  <script src="script.js" defer></script>
-</body>
-</html>
+      <h1 class="hero-title neon">Progettista Elettrico & Automazione</
