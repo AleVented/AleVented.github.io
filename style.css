@@ -114,7 +114,7 @@ body{
 /* FOOTER */
 .footer{ padding:40px 0; text-align:center; color:var(--muted) }
 
-/* RESPONSIVE */
+/* RESPONSIVEE */
 @media (max-width: 980px){
   .sidebar{ left:12px; width:220px; top:12px }
   .hero{ margin-top:90px; padding:30px }
