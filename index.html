@@ -5,56 +5,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alessio Ventura – Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2 {
+            line-height: 1.7;
+            background-color: #f7f7f7;
             color: #333;
         }
-        .section {
-            margin-bottom: 40px;
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            background-color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #ddd;
+            z-index: 999;
+        }
+
+        nav h1 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #222;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        /* SEZIONI */
+        section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        h3.section-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-left: 5px solid #555;
+            padding-left: 10px;
+        }
+
+        /* LISTE */
+        ul.skills {
+            margin-top: 15px;
+            list-style: square;
+            padding-left: 20px;
+        }
+
+        /* CARDS PROGETTI */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .project-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* CONTATTI */
+        .contact p {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            color: #666;
         }
     </style>
 </head>
+
 <body>
 
-    <h1>Alessio Ventura</h1>
-    <p><strong>Progettista elettrico | Automazione | Programmatore PLC</strong></p>
+    <!-- NAVBAR -->
+    <nav>
+        <h1>Alessio Ventura</h1>
+        <ul>
+            <li><a href="#about">Chi sono</a></li>
+            <li><a href="#skills">Competenze</a></li>
+            <li><a href="#projects">Progetti</a></li>
+            <li><a href="#contact">Contatti</a></li>
+        </ul>
+    </nav>
 
-    <div class="section">
-        <h2>Chi sono</h2>
+    <!-- HERO -->
+    <div class="hero">
+        <h2>Progettista Elettrico & Automazione</h2>
         <p>
-            Sono un giovane progettista elettrico con background in meccatronica e automazione.
-            Ho esperienza come programmatore PLC e nella progettazione di impianti elettrici industriali.  
-            Utilizzo strumenti come EPLAN, PLC Siemens/Schneider, e ho competenze base di analisi dati e sviluppo software.
+            Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
+            Background tecnico in meccatronica e automazione, con esperienza pratica su impianti, schemi elettrici e software industriali.
         </p>
     </div>
 
-    <div class="section">
-        <h2>Competenze</h2>
-        <ul>
-            <li>Progettazione elettrica</li>
-            <li>PLC Siemens, Schneider</li>
-            <li>Automazione industriale</li>
+    <!-- ABOUT -->
+    <section id="about">
+        <h3 class="section-title">Chi sono</h3>
+        <p>
+            Ciao! Sono Alessio, 24 anni, diplomato in chimica con specializzazione tecnica in meccatronica e automazione.
+            Ho lavorato come programmatore PLC e attualmente lavoro come progettista elettrico per impianti industriali.<br><br>
+            Sono appassionato di tecnologia, automazione e sviluppo software. Sto continuando a formarmi per crescere come professionista, senza perdere curiosità e voglia di imparare.
+        </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <h3 class="section-title">Competenze</h3>
+        <ul class="skills">
+            <li>Progettazione elettrica industriale</li>
             <li>Disegno schemi elettrici</li>
-            <li>Python (livello base)</li>
+            <li>Programmazione PLC Siemens/Schneider</li>
+            <li>Automazione industriale</li>
+            <li>Controlli elettrici e pneumatici</li>
+            <li>Software CAD elettrici (EPLAN/AutoCAD Electrical)</li>
+            <li>Python – livello base</li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2>Progetti</h2>
-        <p>I progetti saranno caricati prossimamente.</p>
-    </div>
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h3 class="section-title">Progetti</h3>
 
-    <div class="section">
-        <h2>Contatti</h2>
-        <p>Email: <strong>ventura2001lavoro@gmail.com</strong></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/">Profilo</a></p>
-    </div>
+        <p>I progetti saranno aggiunti presto. Qui compariranno come "cards" con titolo, descrizione e immagini.</p>
+
+        <div class="projects-container">
+
+            <!-- CARD DI ESEMPIO (DA ELIMINARE POI) -->
+            <div class="project-card">
+                <h4>📌 Esempio Progetto</h4>
+                <p>Questa è una card dimostrativa. Quando caricherai i tuoi progetti, verranno visualizzati qui.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <h3 class="section-title">Contatti</h3>
+        <p>Email: <strong>inserisci_la_tua_email</strong></p>
+        <p>LinkedIn: <a href="#">https://www.linkedin.com/in/alessio-ventura-a11547233/</a></p>
+    </section>
+
+    <footer>
+        © 2025 – Portfolio di Alessio Ventura
+    </footer>
 
 </body>
 </html>
