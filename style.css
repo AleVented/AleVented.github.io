@@ -251,8 +251,21 @@ body, .section, .topbar, .project-card, .timeline-card,
   border-left: 4px solid var(--accent);
 }
 
+/* ===== TYPOGRAPHY ===== */
+/*Generico per tutti*/
 .lead { color: var(--muted); }
 
+/* Colore e grassetto coerente con le altre scritte bianche SOLO PER I CONTATTI IN FONDO */
+.highlight-link {
+  font-weight: 700;        /* grassetto */
+  color: var(--text-100);  /* usa lo stesso bianco del progetto */
+  text-decoration: none;    /* opzionale, se vuoi togliere underline */
+}
+
+.highlight-link:hover {
+  color: var(--accent);     /* opzionale: colore hover come le altre */
+  text-decoration: underline; /* opzionale: aggiungi underline al passaggio del mouse */
+}
 
 /* =======================================================================================
    7) GRAPHIC CARDS: ESPERIENZE, FORMAZIONE, CERTIFICAZIONI, PROGETTI
