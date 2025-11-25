@@ -72,13 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // SVG con contrasto alto per entrambi i temi
     const sunIcon = `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0 1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM12 4V1h-2v3h2zm0 19v-3h-2v3h2zm8-9h3v-2h-3v2zM4 12H1v-2h3v2zm13.24 7.16 1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zM6.76 19.16l-1.8 1.79-1.41-1.41 1.79-1.8 1.42 1.42zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
-      </svg>`;
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12H3m15.36 5.36l-.7-.7M6.34 6.34l-.7-.7m12.02 12.02l-.7-.7M6.34 17.66l-.7-.7M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+    </svg>`;
+
     const moonIcon = `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M21.752 15.002A9 9 0 019.001 2.251a9.002 9.002 0 1012.751 12.751z"/>
-      </svg>`;
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>`;
+
 
     const update = () => {
       const isLight = root.classList.contains('light');
