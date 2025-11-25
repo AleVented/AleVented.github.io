@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saved = localStorage.getItem('site-theme');
     if(saved === 'light') root.classList.add('light');
 
+    // SVG con contrasto alto per entrambi i temi
     const sunIcon = `
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path fill="currentColor" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0 1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM12 4V1h-2v3h2zm0 19v-3h-2v3h2zm8-9h3v-2h-3v2zM4 12H1v-2h3v2zm13.24 7.16 1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zM6.76 19.16l-1.8 1.79-1.41-1.41 1.79-1.8 1.42 1.42zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
@@ -80,8 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
       </svg>`;
 
     const update = () => {
-      btn.innerHTML = root.classList.contains('light') ? sunIcon : moonIcon;
-      btn.setAttribute('aria-label', root.classList.contains('light') ? 'Tema chiaro' : 'Tema scuro');
+      const isLight = root.classList.contains('light');
+      btn.innerHTML = isLight ? sunIcon : moonIcon;
+      btn.setAttribute('aria-label', isLight ? 'Tema chiaro' : 'Tema scuro');
     };
     update();
 
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  /* ---------- SMOOTH SCROLL con offset ---------- */
+  /* ---------- SMOOTH SCROLL con offset dinamico ---------- */
   (function smoothAnchors(){
     function getTopOffset() {
       const topbar = document.querySelector('.topbar');
