@@ -95,25 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  /* ---------- MOBILE NAV ---------- */
-  (function mobileNav(){
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.querySelector('.mobile-nav');
-    if (!hamburger || !mobileNav) return;
-
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    mobileNav.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
-  })();
-
   /* ---------- SMOOTH SCROLL con offset dinamico ---------- */
   (function smoothAnchors(){
     function getTopOffset() {
