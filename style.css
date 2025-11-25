@@ -34,17 +34,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* SFONDO UNIFORME CON ACCENTI RADIALI ANIMATI */
   background:
-    radial-gradient(800px 400px at 10% 10%, rgba(58,110,165,0.05), transparent 60%),
-    radial-gradient(1000px 500px at 90% 20%, rgba(58,110,165,0.04), transparent 60%),
+    radial-gradient(circle at 50% 30%, rgba(58,110,165,0.03), transparent 80%),
     linear-gradient(180deg, #0d111c 0%, #161b2c 100%);
   
   color: var(--text);
   scroll-behavior: smooth;
-  background-size: 200% 200%;
-  animation: bg-move 30s linear infinite;
 }
+
 
 @keyframes bg-move {
   0% {
