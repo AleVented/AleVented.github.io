@@ -1,31 +1,40 @@
-/* ===== PALETTE & VARS ===== */
+
+/* ===== PALETTE ELEGANTE ===== */
 :root {
-  --bg-900: #0a1a33;
-  --bg-800: #0e2a59;
-  --panel: rgba(255,255,255,0.04);
-  --primary: #0f4a8a;  /* Titoli eleganti */
-  --accent: #1c6dd0;   /* Dettagli, hover */
-  --neon: rgba(79,129,199,0.1); /* uso minimale */
-  --text: #e6eef8;
-  --muted: #b9c7d9;
+  --bg-900: #0b1424;      /* Blu notte profondo */
+  --bg-800: #0f1d33;      /* Blu navy desaturato */
+  --panel: rgba(255,255,255,0.035);
+
+  --primary: #3d66a0;     /* Blu elegante, NON saturo */
+  --accent: #4a7cbc;      /* Per hover, pulsanti */
+  --neon: rgba(90,140,200,0.09);
+
+  --text: #e7edf6;
+  --muted: #9db0c7;
+
   --glass: rgba(255,255,255,0.04);
   --radius: 14px;
   --container-w: 1100px;
-  --shadow-strong: 0 18px 50px rgba(3,8,20,0.6);
+  --shadow-strong: 0 18px 50px rgba(2,6,14,0.55);
 }
 
 :root.light {
-  --bg-900: #f7f9fc;
+  --bg-900: #f3f6fb;
   --bg-800: #ffffff;
-  --panel: rgba(245,245,245,0.95);
-  --primary: #1a3a5f;
-  --accent: #0f66b0;
-  --neon: #0a1a33;
-  --text: #071327;
-  --muted: #49586b;
+  --panel: rgba(0,0,0,0.025);
+
+  --primary: #2c4a73;
+  --accent: #3d66a0;
+  --neon: rgba(30,60,110,0.1);
+
+  --text: #0b1424;
+  --muted: #4f6277;
+
   --glass: rgba(0,0,0,0.04);
-  --shadow-strong: 0 18px 40px rgba(0,0,0,0.12);
+  --shadow-strong: 0 18px 40px rgba(0,0,0,0.08);
 }
+
+
 
 /* BASE */
 * { box-sizing: border-box; }
@@ -34,18 +43,23 @@ body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
-  /* SFONDO BLU MODERNO CON RADIAL ANIMATO */
+  /* SFONDO ANIMATO PREMIUM (molto più soft) */
   background:
-    radial-gradient(circle at 20% 30%, rgba(0,70,140,0.06), transparent 80%),
-    radial-gradient(circle at 80% 70%, rgba(0,90,180,0.04), transparent 80%),
-    linear-gradient(180deg, #0a1a33 0%, #0e2a59 100%);
+    radial-gradient(circle at 25% 30%, rgba(70,100,150,0.07), transparent 70%),
+    radial-gradient(circle at 75% 80%, rgba(50,80,130,0.06), transparent 75%),
+    linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%);
+  background-size: 160% 160%;
+  animation: bg-soft 90s ease-in-out infinite;
   color: var(--text);
-  scroll-behavior: smooth;
-  background-size: 200% 200%;
-  animation: bg-move 60s linear infinite;
 }
+
+@keyframes bg-soft {
+  0%   { background-position: 0% 0%, 100% 100%, 0% 0%; }
+  50%  { background-position: 8% 5%, 92% 95%, 0% 0%; }
+  100% { background-position: 0% 0%, 100% 100%, 0% 0%; }
+}
+
 
 @keyframes bg-move {
   0%   { background-position: 0% 0%, 100% 100%, 0% 0%; }
@@ -109,11 +123,39 @@ body, .section, .topbar, .project-card, .timeline-card, .hero, .exp-card, .cert-
 /* MOBILE */
 .hamburger { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text); cursor: pointer; }
 .theme-toggle {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
-  background: var(--glass); color: var(--text); cursor: pointer;
-  transition: background .2s, transform .2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: background .25s, transform .25s, border-color .25s;
 }
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+}
+
+.theme-toggle svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--text);
+}
+
+/* in light mode */
+:root.light .theme-toggle {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.15);
+}
+
+:root.light .theme-toggle svg {
+  stroke: #1b2a42;
+}
+
 .theme-toggle:hover { background: rgba(28,109,208,0.12); transform: translateY(-1px); }
 .theme-toggle svg { width: 22px; height: 22px; }
 
