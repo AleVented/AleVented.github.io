@@ -1,149 +1,161 @@
 <!DOCTYPE html>
 <html lang="it" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alessio Ventura – Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alessio Ventura – Portfolio</title>
 
-  <!-- favicon -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- LOADER -->
-  <div id="site-loader" aria-hidden="true">
-    <div class="loader-wrap">
-      <svg viewBox="0 0 200 200" class="loader-logo" aria-hidden="true">
-        <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
-        <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
-      </svg>
-      <div class="loader-text">ALV • Loading</div>
-    </div>
-  </div>
+    <div id="site-loader" aria-hidden="true">
+    <div class="loader-wrap">
+      <svg viewBox="0 0 200 200" class="loader-logo" aria-hidden="true">
+        <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
+        <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
+      </svg>
+      <div class="loader-text">ALV • Loading</div>
+    </div>
+  </div>
 
-  <!-- BACKGROUND ANIMATO -->
-  <div id="bg-anim" aria-hidden="true"></div>
+    <div id="bg-anim" aria-hidden="true"></div>
 
-  <!-- NAVBAR TOP -->
-  <header class="topbar">
-    <div class="topbar-inner container">
-      <a class="brand" href="#home" aria-label="Home">
-        <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
-          <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
-          <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
-        </svg>
-        <span class="brand-text">Alessio Ventura</span>
-      </a>
+    <header class="topbar">
+    <div class="topbar-inner container">
+      <a class="brand" href="#home" aria-label="Home">
+        <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
+          <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
+          <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
+        </svg>
+        <span class="brand-text">Alessio Ventura</span>
+      </a>
 
-      <nav class="top-nav">
-        <a href="#home">Home</a>
-        <a href="#about">Chi sono</a>
-        <a href="#skills">Competenze</a>
-        <a href="#timeline">Formazione</a>
-        <a href="#projects">Progetti</a>
-        <a href="#contact">Contatti</a>
-      </nav>
+      <nav class="top-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Chi sono</a>
+        <a href="#skills">Competenze</a>
+        <a href="#experience">Esperienze</a>
+        <a href="#education">Istruzione</a>         <a href="#certifications">Certificazioni</a>         <a href="#projects">Progetti</a>
+        <a href="#contact">Contatti</a>
+      </nav>
 
-      <button class="hamburger" aria-label="Apri menu">☰</button>
-      <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">🌙</button>
-    </div>
-  </header>
+      <button class="hamburger" aria-label="Apri menu">☰</button>
+            <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </header>
 
-  <!-- MOBILE NAV -->
-  <nav class="mobile-nav">
-    <a href="#home">Home</a>
-    <a href="#about">Chi sono</a>
-    <a href="#skills">Competenze</a>
-    <a href="#timeline">Formazione</a>
-    <a href="#projects">Progetti</a>
-    <a href="#contact">Contatti</a>
-  </nav>
+    <nav class="mobile-nav">
+    <a href="#home">Home</a>
+    <a href="#about">Chi sono</a>
+    <a href="#skills">Competenze</a>
+    <a href="#experience">Esperienze</a>
+    <a href="#education">Istruzione</a>     <a href="#certifications">Certificazioni</a>     <a href="#projects">Progetti</a>
+    <a href="#contact">Contatti</a>
+  </nav>
 
-  <!-- MAIN -->
-  <main class="main">
-    <!-- HERO -->
-    <section id="home" class="hero container appear">
-      <h1 class="hero-title neon">Progettista Elettrico & Automazione</h1>
-      <p class="hero-sub">Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
-        Background tecnico in meccatronica e software industriali.</p>
-    </section>
+    <main class="main">
+        <section id="home" class="hero container appear">
+      <h1 class="hero-title neon">Progettista Elettrico & Automazione</h1>
+      <p class="hero-sub">Esperienza in progettazione elettrica industriale, automazione e programmazione PLC.
+        Background tecnico in meccatronica e software industriali.</p>
+    </section>
 
-    <!-- CHI SONO -->
-    <section id="about" class="section container appear">
-      <h2 class="section-title">Chi sono</h2>
-      <p class="lead">
-        Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
-        Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
-      </p>
-    </section>
+        <section id="about" class="section container appear">
+      <h2 class="section-title">Chi sono</h2>
+      <p class="lead">
+        Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
+        Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
+      </p>
+    </section>
 
-    <!-- COMPETENZE -->
-    <section id="skills" class="section container appear">
-      <h2 class="section-title">Competenze</h2>
-      <ul class="skills">
-        <li>Progettazione elettrica industriale</li>
-        <li>Programmazione PLC Siemens / Schneider</li>
-        <li>Automazione industriale</li>
-        <li>EPLAN P8</li>
-        <li>Python (livello base)</li>
-      </ul>
-    </section>
+        <section id="skills" class="section container appear">
+      <h2 class="section-title">Competenze</h2>
+      <ul class="skills">
+        <li>Progettazione elettrica industriale</li>
+        <li>Programmazione PLC Siemens / Schneider</li>
+        <li>Automazione industriale</li>
+        <li>EPLAN P8</li>
+        <li>Python (livello base)</li>
+      </ul>
+    </section>
 
-    <!-- FORMAZIONE -->
-    <section id="timeline" class="section container appear">
-      <h2 class="section-title">Formazione</h2>
-      <div class="timeline">
-        <div class="timeline-item left">
-          <div class="timeline-card">
-            <div class="timeline-meta">2021 — 2023</div>
-            <h3>ITS Meccatronica & Automazione</h3>
-            <p>Formazione tecnica specializzata in automazione e sistemi industriali.</p>
-          </div>
-        </div>
+        <section id="experience" class="section container appear">
+      <h2 class="section-title">Esperienze Lavorative</h2>
+      <p class="lead">Qui potrai inserire le tue esperienze lavorative passate e attuali, magari utilizzando un formato a timeline simile a quello dell'istruzione.</p>
+            <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-meta">2023 — Oggi</div>
+            <h3>Progettista Elettrico Senior</h3>
+            <p>Descrizione mansioni: Progettazione schemi elettrici con EPLAN P8 e gestione della documentazione tecnica.</p>
+          </div>
+        </div>
+              </div>
+    </section>
 
-        <div class="timeline-item right">
-          <div class="timeline-card">
-            <div class="timeline-meta">2015 — 2020</div>
-            <h3>IISVE Chimica dei Materiali</h3>
-            <p>Diploma di maturità come perito chimico con competenze in chimica applicata e materiali industriali.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section id="education" class="section container appear">
+      <h2 class="section-title">Istruzione</h2>       <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-meta">2021 — 2023</div>
+            <h3>ITS Meccatronica & Automazione</h3>
+            <p>Formazione tecnica specializzata in automazione e sistemi industriali.</p>
+          </div>
+        </div>
 
-    <!-- PROGETTI -->
-    <section id="projects" class="section container appear">
-      <h2 class="section-title">Progetti</h2>
-      <p class="lead">I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.</p>
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-meta">2015 — 2020</div>
+            <h3>IISVE Chimica dei Materiali</h3>
+            <p>Diploma di maturità come perito chimico con competenze in chimica applicata e materiali industriali.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <div class="projects-container">
-        <article class="project-card appear">
-          <h3 class="card-title neon">Progetto Demo</h3>
-          <p class="card-body">Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.</p>
-          <div class="card-footer">
-            <span class="tag">PLC</span>
-            <span class="tag">EPLAN</span>
-          </div>
-        </article>
-      </div>
-    </section>
+        <section id="certifications" class="section container appear">
+      <h2 class="section-title">Certificazioni</h2>
+      <p class="lead">Qui potrai elencare i tuoi corsi e le certificazioni ottenute.</p>
+      <ul class="skills">
+        <li>Certificazione EPLAN P8 Avanzato</li>
+        <li>Corso Programmazione PLC Siemens S7-1500</li>
+      </ul>
+    </section>
 
-    <!-- CONTATTI -->
-    <section id="contact" class="section container appear">
-      <h2 class="section-title">Contatti</h2>
-      <p class="lead">Email: <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a></p>
-      <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank">alessio-ventura</a></p>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <small>© 2025 – Portfolio di Alessio Ventura</small>
-  </footer>
+        <section id="projects" class="section container appear">
+      <h2 class="section-title">Progetti</h2>
+      <p class="lead">I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.</p>
 
-  <!-- JS -->
-  <script src="script.js" defer></script>
+      <div class="projects-container">
+        <article class="project-card appear">
+          <h3 class="card-title neon">Progetto Demo</h3>
+          <p class="card-body">Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.</p>
+          <div class="card-footer">
+            <span class="tag">PLC</span>
+            <span class="tag">EPLAN</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+        <section id="contact" class="section container appear">
+      <h2 class="section-title">Contatti</h2>
+      <p class="lead">Email: <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a></p>
+      <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank">alessio-ventura</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 – Portfolio di Alessio Ventura</small>
+  </footer>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
