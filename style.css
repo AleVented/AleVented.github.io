@@ -154,6 +154,20 @@ body, .section, .topbar, .project-card, .timeline-card, .hero, .exp-card, .cert-
 .cert-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 45px rgba(212,175,55,0.15); }
 .cert-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
 .cert-body { color: var(--muted); font-size: 0.85rem; }
+.timeline-card[data-pdf]:hover::after {
+  content: "Apri PDF";         /* testo del tooltip */
+  position: absolute;          /* posiziona sopra la card */
+  bottom: 10px;                /* distanza dal bordo inferiore */
+  right: 10px;                 /* distanza dal bordo destro */
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0,0,0,0.5); /* sfondo semitrasparente */
+  padding: 3px 6px;
+  border-radius: 3px;
+  pointer-events: none;        /* il tooltip non interferisce con il click */
+  z-index: 10;
+}
+
 
 /* 3️⃣ PROGETTI (unchanged) */
 .projects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
@@ -198,3 +212,14 @@ body, .section, .topbar, .project-card, .timeline-card, .hero, .exp-card, .cert-
 .no-scroll {
   overflow: hidden;
 }
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #4f81c7;
+  width: 0%;
+  z-index: 9999;
+}
+

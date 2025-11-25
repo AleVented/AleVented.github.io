@@ -50,18 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /* ---------- APPEAR ON SCROLL ---------- */
-  (function appearObserver(){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('appeared');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+(function appearObserver(){
+  const cards = document.querySelectorAll('.appear, .project-card, .timeline-card');
 
-    document.querySelectorAll('.appear, .project-card, .timeline-card').forEach(el => io.observe(el));
-  })();
+  // ➤ Step Smooth Reveal: assegna transition-delay progressivo
+  cards.forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.1}s`;  // 0.1s per ogni card successiva
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('appeared');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+
+  cards.forEach(el => io.observe(el));
+})();
+
 
   /* ---------- THEME TOGGLE ---------- */
   (function themeToggle(){
@@ -156,4 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+});
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('scroll-progress').style.width = progress + '%';
 });
