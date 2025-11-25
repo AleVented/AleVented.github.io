@@ -1,45 +1,34 @@
 /* ===== PALETTE & VARS ===== */
 :root{
-  --bg-900: #060814;
-  --bg-800: #091425;
-  --panel: rgba(255,255,255,0.04);
-  --primary: #0a2946;     /* titoli eleganti */
-  --accent: #2f6aa6;      /* dettagli, bordi, hover */
-  --neon: #4f81c7;        /* attenuato, quasi non usato */
-  --text: #e6eef8;
-  --muted: #b9c7d9;
-  --glass: rgba(255,255,255,0.04);
+  --bg-900: #0a1a33;   /* navy scuro premium */
+  --bg-800: #123a63;   /* blu medio */
+  --panel: rgba(255,255,255,0.05);
+  --primary: #1e4f91;  /* titoli e testi principali */
+  --accent: #2f6aa6;   /* dettagli e hover */
+  --text: #eaf0f9;     /* testo chiaro */
+  --muted: #b0c4de;    /* testo secondario */
   --radius: 14px;
   --container-w: 1100px;
-  --shadow-strong: 0 18px 50px rgba(3,8,20,0.6);
 }
 
 :root.light{
-  --bg-900: #f7f9fc;
+  --bg-900: #f0f6ff;   /* sfondo chiaro uniforme */
   --bg-800: #ffffff;
   --panel: rgba(245,245,245,0.95);
-  --primary: #1a3a5f;
-  --accent: #0f66b0;
-  --neon: #0a1a33;
-  --text: #071327;
-  --muted: #49586b;
-  --glass: rgba(0,0,0,0.04);
-  --shadow-strong: 0 18px 40px rgba(0,0,0,0.12);
+  --primary: #0a3a6e;  /* blu elegante per titoli */
+  --accent: #1f66b0;
+  --text: #0a1a33;     /* testo scuro leggibile */
+  --muted: #4a5a6d;
 }
 
 /* BASE */
-*{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  /* Sfondo uniforme con gradiente continuo e radiali morbidi */
-  background:
-    radial-gradient(1200px 600px at 12% 8%, rgba(79,129,199,0.05), transparent 60%),
-    radial-gradient(900px 500px at 82% 12%, rgba(79,129,199,0.04), transparent 60%),
-    linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 50%, var(--bg-900) 100%);
+  /* Sfondo uniforme e sfumato */
+  background: linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%);
   color:var(--text);
   scroll-behavior:smooth;
 }
