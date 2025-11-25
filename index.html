@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!--
+  index.html - Portfolio Alessio Ventura
+  -------------------------------------------------
+  Versione "engineered": struttura chiara, commenti didattici,
+  markup semantico e facile da estendere (i18n, nuove sezioni, ecc).
+  Funzionalità mantenute identiche alla versione precedente.
+-->
 <html lang="it" data-theme="dark">
 <head>
   <meta charset="utf-8" />
@@ -8,12 +15,15 @@
   <!-- favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <!-- CSS -->
+  <!-- CSS esterno (mantieni il file style.css così com'è) -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- LOADER -->
+  <!--
+    LOADER
+    - Elemento mostrato prima che la pagina sia completamente caricata.
+    - Rimosso dallo script dopo il caricamento (vedi script.js).
+  -->
   <div id="site-loader" aria-hidden="true">
     <div class="loader-wrap">
       <svg viewBox="0 0 200 200" class="loader-logo" aria-hidden="true">
@@ -24,12 +34,24 @@
     </div>
   </div>
 
-  <!-- BACKGROUND ANIMATO -->
+  <!--
+    CONTENITORE PER PARTICELLE DI SFONDO (gestito via JS)
+    - Vuoto in HTML: lo script popola i figli <span>.
+    - aria-hidden perché è puramente decorativo.
+  -->
   <div id="bg-anim" aria-hidden="true"></div>
 
-  <!-- NAVBAR TOP -->
+  <!--
+    TOPBAR / NAVBAR PRINCIPALE
+    - header è posizionato fixed via CSS.
+    - top-nav contiene i link principali (desktop).
+    - hamburger + mobileNav sono mantenuti per compatibilità con script.js.
+      Nota: mobileNav qui può rimanere vuoto (script.js controlla l'esistenza).
+  -->
   <header class="topbar" role="banner">
     <div class="topbar-inner container">
+
+      <!-- BRAND / HOME LINK -->
       <a class="brand" href="#home" aria-label="Home">
         <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
           <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
@@ -38,6 +60,7 @@
         <span class="brand-text">Alessio Ventura</span>
       </a>
 
+      <!-- NAV LINKS (desktop) -->
       <nav class="top-nav" aria-label="Navigazione principale">
         <a href="#home" class="nav-link">Home</a>
         <a href="#about" class="nav-link">Chi sono</a>
@@ -49,30 +72,40 @@
         <a href="#contact" class="nav-link">Contatti</a>
       </nav>
 
+      <!-- Azioni in alto a destra: tema + hamburger -->
       <div class="top-actions">
+        <!-- THEME TOGGLE: il contenuto SVG viene gestito via script.js -->
         <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema" aria-live="polite">
           <span class="visually-hidden">Cambia tema</span>
         </button>
+
+        <!-- HAMBURGER: rimane (il JS lo nasconde se non usato).
+             aria-controls punta a #mobileNav (se presente) -->
         <button class="hamburger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
       </div>
     </div>
 
-    <!-- MOBILE NAV -->
-    <nav id="mobileNav" class="mobile-nav" aria-label="Navigazione mobile">
-    </nav>
+    <!--
+      MOBILE NAV
+      - Lo teniamo (anche se vuoto) per compatibilità con script.js.
+      - Se decidi di eliminare questo tag, ricordati di aggiornare lo script
+        come discusso (verifica l'esistenza di #mobileNav prima di usarlo).
+    -->
+    <nav id="mobileNav" class="mobile-nav" aria-label="Navigazione mobile"></nav>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN: tutte le sezioni principali -->
   <main class="main">
+
     <!-- HERO -->
-    <section id="home" class="hero container appear">
-      <h1 class="hero-title">Progettista Elettrico & Automazione</h1>
+    <section id="home" class="hero container appear" tabindex="-1" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="hero-title">Progettista Elettrico &amp; Automazione</h1>
       <p class="hero-sub">Esperienza in progettazione elettrica industriale, automazione e programmazione PLC. Background tecnico in meccatronica e software industriali.</p>
     </section>
 
     <!-- CHI SONO -->
-    <section id="about" class="section container appear">
-      <h2 class="section-title">Chi sono</h2>
+    <section id="about" class="section container appear" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">Chi sono</h2>
       <p class="lead">
         Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
         Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
@@ -80,8 +113,8 @@
     </section>
 
     <!-- COMPETENZE -->
-    <section id="skills" class="section container appear">
-      <h2 class="section-title">Competenze</h2>
+    <section id="skills" class="section container appear" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="section-title">Competenze</h2>
       <ul class="skills">
         <li>Progettazione elettrica industriale</li>
         <li>Programmazione PLC Siemens / Schneider</li>
@@ -91,94 +124,96 @@
       </ul>
     </section>
 
-<!-- ESPERIENZE -->
-    <section id="experience" class="section container appear">
-    <h2 class="section-title">Esperienze</h2>
-    <!-- spacer tra titolo e card -->
-    <div style="height: 60px;"></div>
-    <div class="exp-list" style="padding-bottom: 60px;">
+    <!-- ESPERIENZE -->
+    <!--
+      Note implementative:
+      - .exp-list è una grid; .exp-card è lo "slot" ripetibile.
+      - Lo spacer sopra .exp-list evita che la card "copra" il titolo.
+      - Per aggiungere una terza esperienza basta duplicare <article class="exp-card">.
+    -->
+    <section id="experience" class="section container appear" aria-labelledby="experience-title">
+      <h2 id="experience-title" class="section-title">Esperienze</h2>
+
+      <!-- spacer per separare titolo e prima card (utile con lo sfalsamento) -->
+      <div style="height: 60px;" aria-hidden="true"></div>
+
+      <div class="exp-list" style="padding-bottom: 60px;">
         <article class="exp-card" style="transform: translateY(-40px);">
-        <h3 class="exp-title">2024 — In corso: Progettista Elettrico</h3>
-        <p class="exp-body">Progettazione impianti industriali, selezione componenti, stesura schemi elettrici in EPLAN.</p>
+          <h3 class="exp-title">2024 — In corso: Progettista Elettrico</h3>
+          <p class="exp-body">Progettazione impianti industriali, selezione componenti, stesura schemi elettrici in EPLAN.</p>
         </article>
+
         <article class="exp-card" style="transform: translateY(40px);">
-        <h3 class="exp-title">2023 — 2024: Programmatore PLC</h3>
-        <p class="exp-body">Sviluppo logiche di controllo, collaudi e messa in servizio su PLC Siemens/Schneider.</p>
+          <h3 class="exp-title">2023 — 2024: Programmatore PLC</h3>
+          <p class="exp-body">Sviluppo logiche di controllo, collaudi e messa in servizio su PLC Siemens/Schneider.</p>
         </article>
-    </div>
+      </div>
     </section>
 
+    <!-- FORMAZIONE -->
+    <section id="timeline" class="section container appear" aria-labelledby="timeline-title">
+      <h2 id="timeline-title" class="section-title">Formazione</h2>
 
+      <div style="height: 60px;" aria-hidden="true"></div>
 
-
-
-
-<!-- FORMAZIONE -->
-    <section id="timeline" class="section container appear">
-    <h2 class="section-title">Formazione</h2>
-    <!-- spacer tra titolo e card -->
-    <div style="height: 60px;"></div>
-    <div class="exp-list" style="padding-bottom: 60px;">
+      <div class="exp-list" style="padding-bottom: 60px;">
         <article class="exp-card" style="transform: translateY(-40px);">
-        <h3 class="exp-title">2021 — 2023: ITS Meccatronica & Automazione</h3>
-        <p class="exp-body">Formazione tecnica specializzata in automazione e sistemi industriali.</p>
+          <h3 class="exp-title">2021 — 2023: ITS Meccatronica &amp; Automazione</h3>
+          <p class="exp-body">Formazione tecnica specializzata in automazione e sistemi industriali.</p>
         </article>
+
         <article class="exp-card" style="transform: translateY(40px);">
-        <h3 class="exp-title">2015 — 2020: IISVE Chimica dei Materiali</h3>
-        <p class="exp-body">Diploma di maturità come perito chimico con competenze in chimica applicata e materiali industriali.</p>
+          <h3 class="exp-title">2015 — 2020: IISVE Chimica dei Materiali</h3>
+          <p class="exp-body">Diploma di maturità come perito chimico con competenze in chimica applicata e materiali industriali.</p>
         </article>
-    </div>
+      </div>
     </section>
 
+    <!-- CERTIFICAZIONI -->
+    <!--
+      Ogni .cert-card contiene internamente .timeline-card che ha data-pdf.
+      Lo script timelineToggle() ascolta .timeline-card e apre il PDF se presente.
+      Quando aggiungi i PDF, mettili nella cartella corretta e aggiorna data-pdf.
+    -->
+    <section id="certs" class="section container appear" aria-labelledby="certs-title">
+      <h2 id="certs-title" class="section-title">Certificazioni</h2>
 
+      <div class="cert-list">
+        <article class="cert-card">
+          <div class="timeline-card" data-pdf="CERTIFICATO EPLAN.pdf">
+            <h3 class="cert-title">EPLAN P8</h3>
+            <p class="cert-body">Progettazione elettrica</p>
+          </div>
+        </article>
 
+        <article class="cert-card">
+          <div class="timeline-card" data-pdf="CERTIFICATO CAMBRIDGE.pdf">
+            <h3 class="cert-title">INGLESE B2</h3>
+            <p class="cert-body">Competenze linguistiche certificate</p>
+          </div>
+        </article>
 
+        <article class="cert-card">
+          <div class="timeline-card" data-pdf="CERTIFICATO COMAU.pdf">
+            <h3 class="cert-title">ROBOTICA COMAU</h3>
+            <p class="cert-body">Programmazione e utilizzo robot industriali</p>
+          </div>
+        </article>
 
-
-<!-- CERTIFICAZIONI -->
-<section id="certs" class="section container appear">
-  <h2 class="section-title">Certificazioni</h2>
-  <div class="cert-list">
-    
-    
-    <article class="cert-card">
-      <div class="timeline-card" data-pdf="CERTIFICATO EPLAN.pdf">
-        <h3>EPLAN P8</h3>
-        <p>Progettazione elettrica</p>
+        <article class="cert-card">
+          <div class="timeline-card" data-pdf="CERTIFICATO SOLIDWORKS.pdf">
+            <h3 class="cert-title">DISEGNO 3D</h3>
+            <p class="cert-body">Progettazione CAD 3D</p>
+          </div>
+        </article>
       </div>
-    </article>
-    
-    <article class="cert-card">
-      <div class="timeline-card" data-pdf="CERTIFICATO CAMBRIDGE.pdf">
-        <h3>INGLESE B2</h3>
-        <p>Competenze linguistiche certificate</p>
-      </div>
-    </article>
-    
-    <article class="cert-card">
-      <div class="timeline-card" data-pdf="CERTIFICATO COMAU.pdf">
-        <h3>ROBOTICA COMAU</h3>
-        <p>Programmazione e utilizzo robot industriali</p>
-      </div>
-    </article>
-    
-    <article class="cert-card">
-      <div class="timeline-card" data-pdf="CERTIFICATO SOLIDWORKS.pdf">
-        <h3>DISEGNO 3D</h3>
-        <p>Progettazione CAD 3D</p>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-
-
+    </section>
 
     <!-- PROGETTI -->
-    <section id="projects" class="section container appear">
-      <h2 class="section-title">Progetti</h2>
+    <section id="projects" class="section container appear" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-title">Progetti</h2>
       <p class="lead">I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.</p>
+
       <div class="projects-container">
         <article class="project-card appear">
           <h3 class="card-title">Progetto Demo</h3>
@@ -192,16 +227,19 @@
     </section>
 
     <!-- CONTATTI -->
-    <section id="contact" class="section container appear">
-      <h2 class="section-title">Contatti</h2>
+    <section id="contact" class="section container appear" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title">Contatti</h2>
       <p class="lead">Email: <a href="mailto:ventura2001lavoro@gmail.com">ventura2001lavoro@gmail.com</a></p>
       <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener">alessio-ventura</a></p>
     </section>
+
   </main>
 
-  <footer class="footer">
-    <div class="socials">
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="socials" aria-hidden="false">
       <a class="social-btn" href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <!-- icon SVG -->
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4.99v14H.5V8zm7.5 0h4.78v2.02h.07c.66-1.25 2.28-2.57 4.69-2.57 5.01 0 5.93 3.3 5.93 7.59V22H18.2v-6.51c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V22H8V8z"/></svg>
       </a>
       <a class="social-btn" href="https://github.com/AleVented" target="_blank" rel="noopener" aria-label="GitHub">
@@ -214,9 +252,16 @@
     <small>© 2025 – Portfolio di Alessio Ventura</small>
   </footer>
 
-  <!-- JS -->
+  <!--
+    ELEMENTO DI UTILITÀ: INDICATORE DI SCROLL (se usato dallo script)
+    - Se vuoi mostrare la progress bar di scroll, script.js può manipolare #scroll-progress.
+  -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!--
+    JS esterno (mantieni script.js così com'è).
+    - evitiamo script inline per mantenere separazione di responsabilità.
+  -->
   <script src="script.js" defer></script>
 </body>
 </html>
-
-<div id="scroll-progress"></div>
