@@ -1,4 +1,4 @@
-/* ===== PALETTE & VARS ===== */
+/* PALETTE AND VARS */
 :root{
   --bg-900: #060814;
   --bg-800: #091425;
@@ -14,7 +14,7 @@
 }
 
 /* LIGHT THEME OVERRIDE */
-:root.light{
+:root.light, html[data-theme="light"], html.light {
   --bg-900: #fdfdfd;
   --bg-800: #ffffff;
   --panel: rgba(245,245,245,0.95);
