@@ -135,22 +135,33 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /* ---------- TIMELINE CLICCABILE ---------- */
-  (function timelineToggle(){
-    document.querySelectorAll('.timeline-card').forEach(card => {
-      const toggle = () => {
-        const isOpen = card.classList.toggle('open');
-        card.classList.toggle('collapsed', !isOpen);
-        card.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      };
-      card.addEventListener('click', toggle);
-      card.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggle();
-        }
-      });
+(function timelineToggle(){
+  document.querySelectorAll('.timeline-card').forEach(card => {
+
+    const toggle = () => {
+      const isOpen = card.classList.toggle('open');
+      card.classList.toggle('collapsed', !isOpen);
+      card.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+      // --- Se è stata aperta e ha un PDF, lo apro ---
+      const pdf = card.dataset.pdf;
+      if (isOpen && pdf) {
+        window.open(pdf, '_blank');
+      }
+    };
+
+    card.addEventListener('click', toggle);
+
+    card.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
     });
-  })();
+
+  });
+})();
+
 
   /* ---------- reduce-motion respect ---------- */
   (function reducedMotion(){
