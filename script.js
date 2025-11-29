@@ -129,6 +129,16 @@
       await wait(600);
       loader.remove();
     });
+
+    // Rimuove il preloader quando la pagina è completamente caricata
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.classList.add('hidden');
+        setTimeout(() => preloader.remove(), 2000); // rimuove completamente dal DOM dopo transizione
+      }
+    });
+    
   }
 
   /**
@@ -272,32 +282,80 @@
    * (esempio: aprendo /index.html#about direttamente) - in questo caso applichiamo
    * uno scroll "corretto" che considera la topbar.
    */
-  function initSmoothAnchors() {
-    function offsetScrollHandler(e) {
-      const href = e.currentTarget.getAttribute('href');
-      if (!href || href.charAt(0) !== '#') return;
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (!target) return;
-      scrollToElementWithOffset(target, { behavior: 'smooth' });
-    }
+function initSmoothAnchors() {
 
-    // registra listener per i click
-    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', offsetScrollHandler));
+  // --------------------------------------
+  // 1) CLICK SU LINK CHE INIZIANO PER "#"
+  // --------------------------------------
+function initSmoothAnchors() {
+  function offsetScrollHandler(e) {
+    const href = e.currentTarget.getAttribute('href');
+    if (!href || href.charAt(0) !== '#') return;
 
-    // Se la pagina viene caricata e l'URL contiene un hash, effettua uno scroll corretto
-    if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        // scroll istantaneo (senza smooth) per evitare comportamento "strano" al load
-        // e per rispettare l'offset della topbar
-        // Ritardiamo di pochissimo per lasciare il layout stabilizzarsi (es. immagini/caricamento)
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+    scrollToElementWithOffset(target, { behavior: 'smooth' });
+    history.replaceState(null, '', href);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href === '#' || href === '' || href === '#!') return;
+    a.addEventListener('click', offsetScrollHandler);
+  });
+
+  // Se la pagina viene caricata con hash, scroll solo dopo loader + layout
+  const hash = window.location.hash;
+  if (hash && hash.length > 1) {
+    const target = document.querySelector(hash);
+    if (target) {
+      // aspetta la fine del loader e animazioni
+      window.addEventListener('load', () => {
+        // usa un piccolo delay extra per sicurezza
         setTimeout(() => {
           scrollToElementWithOffset(target, { behavior: 'auto' });
-        }, 50);
-      }
+        }, 150);
+      });
     }
   }
+}
+
+
+
+  // --------------------------------------
+  // 2) SCROLL CORRETTO SE LA PAGINA SI APRE GIÀ CON UN HASH
+  // --------------------------------------
+  const hash = window.location.hash;
+
+  if (hash && hash.length > 1) {
+    const target = document.querySelector(hash);
+
+    if (target) {
+      // Ritardo minimo per permettere al layout di stabilizzarsi
+      setTimeout(() => {
+        scrollToElementWithOffset(target, { behavior: 'auto' });
+      }, 80);
+    }
+  }
+}
+
+  // --------------------------------------
+  // 3) BLOCCA LA PAGINA FINO A CARICAMENTO COMPLETO PER EVITARE SALTI INIZIALI
+  // --------------------------------------
+
+(function initSafeScroll() {
+  // Blocca scroll automatico del browser
+  window.history.scrollRestoration = 'manual'; // previene scroll automatici sugli hash
+  window.scrollTo(0, 0); // forza la pagina in alto
+
+  // Appena tutto è caricato
+  window.addEventListener('load', () => {
+    // ripristina scroll behavior normale
+    document.documentElement.style.scrollBehavior = '';
+  });
+})();
+
 
   /**
    * -------------------------
@@ -510,3 +568,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 })(); // fine IIFE
+

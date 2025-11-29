@@ -471,3 +471,44 @@ body, .section, .topbar, .project-card, .timeline-card,
   background: #4f81c7;
   z-index: 9999;
 }
+
+/* =======================================================================================
+   12) LOADER / PRELOADER
+   ---------------------------------------------------------------------------------------
+   Mostra un'animazione di caricamento elegante prima che la pagina sia pronta
+======================================================================================= */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-900);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.loader-dot {
+  width: 14px;
+  height: 14px;
+  margin: 0 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: loader-bounce 0.6s infinite alternate;
+}
+
+.loader-dot:nth-child(2) { animation-delay: 0.2s; }
+.loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loader-bounce {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-14px); }
+}
