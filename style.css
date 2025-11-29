@@ -284,15 +284,31 @@ body, .section, .topbar, .project-card, .timeline-card,
   padding: 18px;
   border-radius: 12px;
   border: 1px solid rgba(212,175,55,0.10);
-  box-shadow: 0 14px 36px rgba(0,0,0,0.5);
+
+  /* Ombra iniziale delicata */
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+
   cursor: pointer;
 
-  transition: transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .36s;
+  /* Transizioni fluide */
+  transition: transform .36s cubic-bezier(.2,.9,.2,1),
+              box-shadow .36s,
+              filter .3s;
 }
+
+/* Hover: effetto “in avanti” + illuminazione graduale */
+.exp-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 28px 50px rgba(212,175,55,0.15);
+}
+
+/* Sfalsamento designer-friendly */
+.exp-card:nth-child(odd)  { transform: translateY(-18px); }
+.exp-card:nth-child(even) { transform: translateY(18px); }
 
 /* Hover */
 .exp-card:hover {
-  transform: translateY(-8px) scale(1.01);
+  transform: translateY(-6px) scale(1.01);
   box-shadow: 0 28px 50px rgba(212,175,55,0.15);
 }
 
@@ -349,26 +365,24 @@ body, .section, .topbar, .project-card, .timeline-card,
 
 
 /* 7.3 — Progetti */
-.projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 18px;
-}
-
 .project-card {
   background: var(--panel);
   padding: 18px;
   border-radius: 12px;
   border: 1px solid rgba(212,175,55,0.10);
+
+  /* Ombra iniziale leggermente più sottile */
   box-shadow: 0 12px 36px rgba(0,0,0,0.55);
 
-  transition: transform .36s cubic-bezier(.2,.9,.2,1), 
-              box-shadow .36s, filter .3s;
+  transition: transform .36s cubic-bezier(.2,.9,.2,1),
+              box-shadow .36s,
+              filter .3s;
 }
 
+/* Hover: effetto “in avanti” + illuminazione graduale */
 .project-card:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow:0 28px 60px rgba(212,175,55,0.18);
+  box-shadow: 0 28px 60px rgba(212,175,55,0.18);
 }
 
 

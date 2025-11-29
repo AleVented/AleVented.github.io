@@ -408,4 +408,105 @@
     init();
   }
 
+  /* --------------------------
+   WAIT FOR DOM
+--------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* --------------------------
+     LOADER
+  --------------------------- */
+  const loader = document.getElementById('site-loader');
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(() => loader.remove(), 600);
+    }, 600);
+  });
+
+  /* --------------------------
+     BACKGROUND PARTICLES
+  --------------------------- */
+  const bg = document.getElementById('bg-anim');
+  if (bg) {
+    const total = 40;
+    for (let i = 0; i < total; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.top = Math.random() * 100 + 'vh';
+      s.style.animationDuration = 4 + Math.random() * 6 + 's';
+      bg.appendChild(s);
+    }
+  }
+
+  /* --------------------------
+     THEME TOGGLE (LIGHT/DARK)
+  --------------------------- */
+  const themeBtn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  // Carica tema salvato
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+  // Aggiorna icone
+  function updateThemeIcon() {
+    if (!themeBtn) return;
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    themeBtn.innerHTML = isDark
+      ? '🌙'
+      : '☀️';
+  }
+  updateThemeIcon();
+
+  // Click toggle
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const newTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon();
+    });
+  }
+
+  /* --------------------------
+     MOBILE MENU (Hamburger)
+  --------------------------- */
+  const hamburger = document.querySelector('.hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+  }
+
+  /* --------------------------
+     APPEAR ON SCROLL
+  --------------------------- */
+  const appearElements = document.querySelectorAll('.appear');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+  }, { threshold: 0.2 });
+
+  appearElements.forEach(el => observer.observe(el));
+
+  /* --------------------------
+     CERTIFICATI → APRI PDF
+  --------------------------- */
+  const certs = document.querySelectorAll('.timeline-card[data-pdf]');
+  certs.forEach(card => {
+    card.addEventListener('click', () => {
+      const pdf = card.dataset.pdf;
+      if (pdf) window.open(pdf, '_blank');
+    });
+  });
+
+});
+
+
 })(); // fine IIFE
