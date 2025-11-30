@@ -6,75 +6,121 @@
   markup semantico e facile da estendere (i18n, nuove sezioni, ecc).
   Funzionalità mantenute identiche alla versione precedente.
 -->
-<html lang="it" data-theme="dark">
+<html lang="it" data-theme="dark"> 
+<!--
+  lang="it" → dice al browser e agli screen reader che il testo è italiano.
+  data-theme="dark" → attributo personalizzato usato da CSS + JS
+                       per settare il tema scuro da default.
+-->
+
 <head>
   <meta charset="utf-8" />
+  <!-- Supporta caratteri internazionali, emoji, accenti ecc -->
+
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!--
+    Rende la pagina responsive su dispositivi mobili:
+    - width=device-width → larghezza = schermo del device
+    - initial-scale=1 → zoom iniziale senza ridimensionamenti strani
+  -->
+
   <title>Alessio Ventura – Portfolio</title>
+  <!-- Titolo che appare nella tab del browser -->
 
   <!-- favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <!-- Icona della tab del browser -->
 
   <!-- CSS esterno (mantieni il file style.css così com'è) -->
   <link rel="stylesheet" href="style.css">
+  <!--
+    Collega il foglio di stile principale.
+    Mantenerlo esterno permette caching migliore e riuso in più pagine.
+  -->
 </head>
+
 <body>
   <!--
-    LOADER
-    - Elemento mostrato prima che la pagina sia completamente caricata.
-    - Rimosso dallo script dopo il caricamento (vedi script.js).
+    LOADER / PRELOADER
+    -------------------------------------------------------------
+    Hai due loader:
+    1) #preloader → quello "vecchio" con i tre puntini (POTRESTI RIMUOVERLO)
+    2) #site-loader → quello nuovo con il logo
+
+    Attualmente il tuo script gestisce solo #site-loader.
+    #preloader resta solo se vuoi un effetto “double loading”
   -->
 
-  <!-- PRELOADER -->
-<!-- Preloader -->
-<div id="preloader">
-  <div class="preloader-inner">
-    <!-- qui puoi mettere il tuo logo o animazione -->
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+  <!-- PRELOADER (vecchio) -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <!-- Qui puoi mettere un logo personalizzato, GIF, animazione CSS -->
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
   </div>
-</div>
 
-
+  <!-- SITE LOADER (quello nuovo, gestito al 100% da script.js) -->
   <div id="site-loader" aria-hidden="true">
     <div class="loader-wrap">
+      <!-- Logo SVG animato (stile AV / ALV) -->
       <svg viewBox="0 0 200 200" class="loader-logo" aria-hidden="true">
+        <!-- Linea grande -->
         <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
+        <!-- Linea piccola -->
         <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
       </svg>
+
+      <!-- Testo sotto il logo -->
       <div class="loader-text">ALV • Loading</div>
     </div>
   </div>
 
   <!--
-    CONTENITORE PER PARTICELLE DI SFONDO (gestito via JS)
-    - Vuoto in HTML: lo script popola i figli <span>.
-    - aria-hidden perché è puramente decorativo.
+    SFONDO ANIMATO (PARTICELLE)
+    -------------------------------------------------------------
+    - Questo div rimane VUOTO.
+    - Lo script.js crea dinamicamente tanti <span> con posizioni casuali.
+    - aria-hidden="true" → decorativo, ignorato dagli screen reader.
   -->
   <div id="bg-anim" aria-hidden="true"></div>
 
   <!--
-    TOPBAR / NAVBAR PRINCIPALE
-    - header è posizionato fixed via CSS.
-    - top-nav contiene i link principali (desktop).
-    - hamburger + mobileNav sono mantenuti per compatibilità con script.js.
-      Nota: mobileNav qui può rimanere vuoto (script.js controlla l'esistenza).
+    HEADER / TOPBAR
+    -------------------------------------------------------------
+    include:
+    - logo
+    - link di navigazione desktop
+    - pulsante tema
+    - hamburger (se vuoi un menu mobile)
   -->
   <header class="topbar" role="banner">
     <div class="topbar-inner container">
+      <!--
+        "container" è una classe di layout:
+        tipicamente imposta max-width e padding orizzontale.
+      -->
 
-      <!-- BRAND / HOME LINK -->
+      <!-- BRAND / HOME -->
       <a class="brand" href="#home" aria-label="Home">
+        <!-- Logo piccolo versione SVG -->
         <svg viewBox="0 0 200 200" class="logo-sm" aria-hidden="true">
           <path d="M50 150 L100 40 L150 150" class="stroke" stroke-width="12" fill="none"/>
           <path d="M70 150 L100 95 L130 150" class="stroke" stroke-width="8" fill="none"/>
         </svg>
+
+        <!-- Testo vicino al logo -->
         <span class="brand-text">Alessio Ventura</span>
       </a>
 
-      <!-- NAV LINKS (desktop) -->
+      <!-- NAVIGAZIONE DESKTOP -->
       <nav class="top-nav" aria-label="Navigazione principale">
+        <!--
+          Tutti link ad “ancora” (hash):
+          il tuo script.js intercetta ogni click e applica smooth scroll
+          tenendo conto della topbar fissa.
+        -->
         <a href="#home" class="nav-link">Home</a>
         <a href="#about" class="nav-link">Chi sono</a>
         <a href="#skills" class="nav-link">Competenze</a>
@@ -85,196 +131,316 @@
         <a href="#contact" class="nav-link">Contatti</a>
       </nav>
 
-      <!-- Azioni in alto a destra: tema + hamburger -->
+      <!-- AZIONI (THEME TOGGLE + HAMBURGER) -->
       <div class="top-actions">
-        <!-- THEME TOGGLE: il contenuto SVG viene gestito via script.js -->
+
+        <!-- TEMA (dark/light)
+             - Il SVG viene messo via JS
+             - Salva preferenza in localStorage
+        -->
         <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema" aria-live="polite">
           <span class="visually-hidden">Cambia tema</span>
         </button>
 
-        <!-- HAMBURGER: rimane (il JS lo nasconde se non usato).
-             aria-controls punta a #mobileNav (se presente) -->
-        <button class="hamburger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+        <!-- MENU MOBILE
+             - lo script può usarlo (o ignorarlo)
+             - aria-controls = #mobileNav
+        -->
+        <button class="hamburger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileNav">
+          ☰
+        </button>
       </div>
     </div>
-
-    <!--
-      MOBILE NAV
-      - Lo teniamo (anche se vuoto) per compatibilità con script.js.
-      - Se decidi di eliminare questo tag, ricordati di aggiornare lo script
-        come discusso (verifica l'esistenza di #mobileNav prima di usarlo).
-    -->
-    <nav id="mobileNav" class="mobile-nav" aria-label="Navigazione mobile"></nav>
   </header>
 
-  <!-- MAIN: tutte le sezioni principali -->
-  <main class="main">
-
-    <!-- HERO -->
-    <section id="home" class="hero container appear" tabindex="-1" aria-labelledby="hero-title">
-      <h1 id="hero-title" class="hero-title">Progettista Elettrico &amp; Automazione</h1>
-      <p class="hero-sub">Esperienza in progettazione elettrica industriale, automazione e programmazione PLC. Background tecnico in meccatronica e software industriali.</p>
-    </section>
-
-    <!-- CHI SONO -->
-    <section id="about" class="section container appear" aria-labelledby="about-title">
-      <h2 id="about-title" class="section-title">Chi sono</h2>
-      <p class="lead">
-        Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
-        Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
-      </p>
-    </section>
-
-    <!-- COMPETENZE -->
-    <section id="skills" class="section container appear" aria-labelledby="skills-title">
-      <h2 id="skills-title" class="section-title">Competenze</h2>
-      <ul class="skills">
-        <li>Progettazione elettrica industriale</li>
-        <li>Programmazione PLC Siemens / Schneider</li>
-        <li>Automazione industriale</li>
-        <li>EPLAN P8</li>
-        <li>Python (livello base)</li>
-      </ul>
-    </section>
-
-    <!-- ESPERIENZE -->
     <!--
-      Note implementative:
-      - .exp-list è una grid; .exp-card è lo "slot" ripetibile.
-      - Lo spacer sopra .exp-list evita che la card "copra" il titolo.
-      - Per aggiungere una terza esperienza basta duplicare <article class="exp-card">.
-    -->
-    <section id="experience" class="section container appear" aria-labelledby="experience-title">
-      <h2 id="experience-title" class="section-title">Esperienze</h2>
+  MOBILE NAV
+  -------------------------------------------------------------
+  - Questo <nav> è dedicato alla navigazione mobile.
+  - Attualmente è vuoto, perché lo script.js lo popola dinamicamente
+    o gestisce la sua apertura/chiusura quando clicchi l’hamburger.
+  - È utile tenerlo per compatibilità con lo script. Se lo rimuovi,
+    ricordati di modificare script.js (controllo esistenza #mobileNav).
+-->
+<nav id="mobileNav" class="mobile-nav" aria-label="Navigazione mobile"></nav>
 
-      <!-- spacer per separare titolo e prima card (utile con lo sfalsamento) -->
-      <div style="height: 60px;" aria-hidden="true"></div>
+</header>
+<!-- Fine del tag <header> principale (topbar / navbar desktop + mobile) -->
 
-      <div class="exp-list" style="padding-bottom: 60px;">
-        <article class="exp-card" style="transform: translateY(-40px);">
-          <h3 class="exp-title">2024 — In corso: Progettista Elettrico</h3>
-          <p class="exp-body">Progettazione impianti industriali, selezione componenti, stesura schemi elettrici in EPLAN.</p>
-        </article>
+<!-- MAIN: tutte le sezioni principali -->
+<main class="main">
+<!--
+  <main> racchiude tutti i contenuti principali della pagina,
+  esclusi header e footer. Migliora l’accessibilità (screen reader)
+  e il SEO.
+-->
 
-        <article class="exp-card" style="transform: translateY(40px);">
-          <h3 class="exp-title">2023 — 2024: Programmatore PLC</h3>
-          <p class="exp-body">Sviluppo logiche di controllo, collaudi e messa in servizio su PLC Siemens/Schneider.</p>
-        </article>
-      </div>
-    </section>
+  <!-- HERO -->
+  <section id="home" class="hero container appear" tabindex="-1" aria-labelledby="hero-title">
+  <!--
+    Sezione iniziale della pagina ("hero section").
+    id="home" → ancora per il link #home.
+    class="hero container appear":
+      - hero → stile specifico per hero section (titolo grande, sfondo)
+      - container → allinea contenuto e imposta max-width/padding
+      - appear → probabilmente animazione in entrata via JS/CSS
+    tabindex="-1" → rende la sezione focusable via script (es. smooth scroll)
+    aria-labelledby="hero-title" → associa un label accessibile al titolo
+  -->
+    <h1 id="hero-title" class="hero-title">
+      Progettista Elettrico &amp; Automazione
+    </h1>
+    <!-- Titolo principale H1 → keyword per SEO -->
 
-    <!-- FORMAZIONE -->
-    <section id="timeline" class="section container appear" aria-labelledby="timeline-title">
-      <h2 id="timeline-title" class="section-title">Formazione</h2>
+    <p class="hero-sub">
+      Esperienza in progettazione elettrica industriale, automazione e programmazione PLC. 
+      Background tecnico in meccatronica e software industriali.
+    </p>
+    <!-- Paragrafo descrittivo sotto il titolo -->
+  </section>
 
-      <div style="height: 60px;" aria-hidden="true"></div>
+  <!-- CHI SONO -->
+  <section id="about" class="section container appear" aria-labelledby="about-title">
+  <!--
+    Sezione "Chi sono":
+    - id="about" → ancora per link #about
+    - class="section container appear" → styling generale per sezioni
+    - aria-labelledby="about-title" → rende la sezione accessibile
+  -->
+    <h2 id="about-title" class="section-title">Chi sono</h2>
+    <!-- Titolo H2 per SEO e struttura semantica -->
 
-      <div class="exp-list" style="padding-bottom: 60px;">
-        <article class="exp-card" style="transform: translateY(-40px);">
-          <h3 class="exp-title">2021 — 2023: ITS Meccatronica &amp; Automazione</h3>
-          <p class="exp-body">Formazione tecnica specializzata in automazione e sistemi industriali.</p>
-        </article>
+    <p class="lead">
+      Ciao! Sono Alessio, 24 anni, con esperienza nella progettazione elettrica e nel mondo dell'automazione.
+      Ho lavorato come programmatore PLC e attualmente progetto impianti industriali.
+    </p>
+    <!-- Paragrafo introduttivo con classe "lead" per evidenziarlo (font più grande/contrastato) -->
+  </section>
 
-        <article class="exp-card" style="transform: translateY(40px);">
-          <h3 class="exp-title">2015 — 2020: IISVE Chimica dei Materiali</h3>
-          <p class="exp-body">Diploma di maturità come perito chimico con competenze in chimica applicata e materiali industriali.</p>
-        </article>
-      </div>
-    </section>
+  <!-- COMPETENZE -->
+  <section id="skills" class="section container appear" aria-labelledby="skills-title">
+  <!--
+    Sezione "Competenze":
+    - id="skills" → ancora per link #skills
+    - ul.skills → lista non ordinata con le competenze principali
+  -->
+    <h2 id="skills-title" class="section-title">Competenze</h2>
 
-    <!-- CERTIFICAZIONI -->
-    <!--
-      Ogni .cert-card contiene internamente .timeline-card che ha data-pdf.
-      Lo script timelineToggle() ascolta .timeline-card e apre il PDF se presente.
-      Quando aggiungi i PDF, mettili nella cartella corretta e aggiorna data-pdf.
-    -->
-    <section id="certs" class="section container appear" aria-labelledby="certs-title">
-      <h2 id="certs-title" class="section-title">Certificazioni</h2>
+    <ul class="skills">
+      <li>Progettazione elettrica industriale</li>
+      <li>Programmazione PLC Siemens / Schneider</li>
+      <li>Automazione industriale</li>
+      <li>EPLAN P8</li>
+      <li>Python (livello base)</li>
+    </ul>
+    <!-- Lista puntata delle skill principali → facilmente aggiungibili o modificabili -->
+  </section>
 
-      <div class="cert-list">
-        <article class="cert-card">
-          <div class="timeline-card" data-pdf="CERTIFICATO EPLAN.pdf">
-            <h3 class="cert-title">EPLAN P8</h3>
-            <p class="cert-body">Progettazione elettrica</p>
-          </div>
-        </article>
+  <!-- ESPERIENZE -->
+  <!--
+    Note implementative:
+    - .exp-list → container che funziona come grid/flex per le card
+    - .exp-card → singola esperienza, ripetibile
+    - Lo spacer div sopra exp-list serve a non coprire il titolo quando ci sono animazioni o offset
+    - Per aggiungere nuove esperienze basta duplicare <article class="exp-card">
+  -->
+  <section id="experience" class="section container appear" aria-labelledby="experience-title">
+    <h2 id="experience-title" class="section-title">Esperienze</h2>
 
-        <article class="cert-card">
-          <div class="timeline-card" data-pdf="CERTIFICATO CAMBRIDGE.pdf">
-            <h3 class="cert-title">INGLESE B2</h3>
-            <p class="cert-body">Competenze linguistiche certificate</p>
-          </div>
-        </article>
+    <!-- spacer per separare titolo e prima card (utile con animazioni/scroll) -->
+    <div style="height: 60px;" aria-hidden="true"></div>
 
-        <article class="cert-card">
-          <div class="timeline-card" data-pdf="CERTIFICATO COMAU.pdf">
-            <h3 class="cert-title">ROBOTICA COMAU</h3>
-            <p class="cert-body">Programmazione e utilizzo robot industriali</p>
-          </div>
-        </article>
+    <div class="exp-list" style="padding-bottom: 60px;">
+      <article class="exp-card" style="transform: translateY(-40px);">
+        <h3 class="exp-title">2024 — In corso: Progettista Elettrico</h3>
+        <p class="exp-body">Progettazione impianti industriali, selezione componenti, stesura schemi elettrici in EPLAN.</p>
+      </article>
 
-        <article class="cert-card">
-          <div class="timeline-card" data-pdf="CERTIFICATO SOLIDWORKS.pdf">
-            <h3 class="cert-title">DISEGNO 3D</h3>
-            <p class="cert-body">Progettazione CAD 3D</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- PROGETTI -->
-    <section id="projects" class="section container appear" aria-labelledby="projects-title">
-      <h2 id="projects-title" class="section-title">Progetti</h2>
-      <p class="lead">I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.</p>
-
-      <div class="projects-container">
-        <article class="project-card appear">
-          <h3 class="card-title">Progetto Demo</h3>
-          <p class="card-body">Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.</p>
-          <div class="card-footer">
-            <span class="tag">PLC</span>
-            <span class="tag">EPLAN</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTATTI -->
-    <section id="contact" class="section container appear" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="section-title">Contatti</h2>
-      <p class="lead">Email: <a href="mailto:ventura2001lavoro@gmail.com" class = highlight-link>ventura2001lavoro@gmail.com </a></p>
-      <p class="lead">LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener" class = highlight-link>Alessio Ventura</a></p>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer" role="contentinfo">
-    <div class="socials" aria-hidden="false">
-      <a class="social-btn" href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <!-- icon SVG -->
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4.99v14H.5V8zm7.5 0h4.78v2.02h.07c.66-1.25 2.28-2.57 4.69-2.57 5.01 0 5.93 3.3 5.93 7.59V22H18.2v-6.51c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V22H8V8z"/></svg>
-      </a>
-      <a class="social-btn" href="https://github.com/AleVented" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.96 5.27.96 11.54c0 4.86 3.15 8.99 7.52 10.44.55.1.75-.24.75-.53 0-.26-.01-1.12-.02-2.03-3.06.67-3.71-1.31-3.71-1.31-.5-1.25-1.23-1.58-1.23-1.58-.99-.68.08-.67.08-.67 1.09.08 1.66 1.12 1.66 1.12.97 1.66 2.55 1.18 3.17.9.1-.7.38-1.17.69-1.44-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.17 1.12-2.94-.11-.28-.49-1.41.11-2.94 0 0 .92-.29 3.02 1.12a10.42 10.42 0 0 1 5.5 0c2.1-1.41 3.01-1.12 3.01-1.12.6 1.53.22 2.66.11 2.94.69.77 1.12 1.74 1.12 2.94 0 4.22-2.57 5.15-5.02 5.42.39.33.74.97.74 1.96 0 1.41-.01 2.54-.01 2.88 0 .29.2.64.76.53 4.36-1.45 7.51-5.58 7.51-10.44C23.04 5.27 18.27.5 12 .5Z"/></svg>
-      </a>
-      <a class="social-btn" href="mailto:ventura2001lavoro@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 13.065 2 6.75V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6.75l-10 6.315ZM22 6H2l10 6 10-6Z"/></svg>
-      </a>
+      <article class="exp-card" style="transform: translateY(40px);">
+        <h3 class="exp-title">2023 — 2024: Programmatore PLC</h3>
+        <p class="exp-body">Sviluppo logiche di controllo, collaudi e messa in servizio su PLC Siemens/Schneider.</p>
+      </article>
     </div>
-    <small>© 2025 – Portfolio di Alessio Ventura</small>
-  </footer>
+    <!-- exp-list chiude -->
+  </section>
 
+  <!-- FORMAZIONE -->
+  <section id="timeline" class="section container appear" aria-labelledby="timeline-title">
   <!--
-    ELEMENTO DI UTILITÀ: INDICATORE DI SCROLL (se usato dallo script)
-    - Se vuoi mostrare la progress bar di scroll, script.js può manipolare #scroll-progress.
+    Sezione "Formazione / Istruzione":
+    - stesse logiche di styling e animazioni della sezione esperienze
+    - le timeline-card possono essere animate con JS
   -->
-  <div id="scroll-progress" aria-hidden="true"></div>
+    <h2 id="timeline-title" class="section-title">Formazione</h2>
 
-  <!--
-    JS esterno (mantieni script.js così com'è).
-    - evitiamo script inline per mantenere separazione di responsabilità.
-  -->
-  <script src="script.js"></script>
+    <div style="height: 60px;" aria-hidden="true"></div>
+
+    <div class="exp-list" style="padding-bottom: 60px;">
+      <article class="exp-card" style="transform: translateY(-40px);">
+        <h3 class="exp-title">2021 — 2023: ITS Meccatronica &amp; Automazione</h3>
+        <p class="exp-body">Formazione tecnica specializzata in automazione e sistemi industriali.</p>
+      </article>
+
+      <article class="exp-card" style="transform: translateY(40px);">
+        <h3 class="exp-title">2015 — 2020: IISVE Chimica dei Materiali</h3>
+        <p class="exp-body">Diploma di maturità come perito chimico con competenze in chimica applicata e materiali industriali.</p>
+      </article>
+    </div>
+    <!-- exp-list chiude -->
+  </section>
+
+
+<!-- CERTIFICAZIONI -->
+<!--
+  Sezione dedicata alle certificazioni.
+  Ogni "cert-card" contiene internamente una "timeline-card" che può avere un attributo data-pdf.
+  Lo script timelineToggle() ascolta i click su .timeline-card e, se data-pdf è presente, apre il PDF corrispondente.
+  Quando aggiungi nuovi PDF, mettili nella cartella corretta e aggiorna l'attributo data-pdf.
+-->
+<section id="certs" class="section container appear" aria-labelledby="certs-title">
+  <!-- id="certs" → ancora per link di navigazione #certs -->
+  <!-- class="section container appear" → stile comune alle sezioni, animazioni di entrata -->
+  <!-- aria-labelledby="certs-title" → accessibilità per screen reader -->
+  
+  <h2 id="certs-title" class="section-title">Certificazioni</h2>
+  <!-- Titolo H2 della sezione, usato anche da aria-labelledby -->
+
+  <div class="cert-list">
+    <!-- Container per tutte le certificazioni, stile grid/flex -->
+    
+    <article class="cert-card">
+      <!-- Ogni certificazione singola -->
+      <div class="timeline-card" data-pdf="CERTIFICATO EPLAN.pdf">
+        <!-- timeline-card → interattiva, JS la rende cliccabile se data-pdf presente -->
+        <h3 class="cert-title">EPLAN P8</h3>
+        <!-- Titolo certificazione -->
+        <p class="cert-body">Progettazione elettrica</p>
+        <!-- Descrizione breve -->
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <div class="timeline-card" data-pdf="CERTIFICATO CAMBRIDGE.pdf">
+        <h3 class="cert-title">INGLESE B2</h3>
+        <p class="cert-body">Competenze linguistiche certificate</p>
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <div class="timeline-card" data-pdf="CERTIFICATO COMAU.pdf">
+        <h3 class="cert-title">ROBOTICA COMAU</h3>
+        <p class="cert-body">Programmazione e utilizzo robot industriali</p>
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <div class="timeline-card" data-pdf="CERTIFICATO SOLIDWORKS.pdf">
+        <h3 class="cert-title">DISEGNO 3D</h3>
+        <p class="cert-body">Progettazione CAD 3D</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PROGETTI -->
+<section id="projects" class="section container appear" aria-labelledby="projects-title">
+  <!-- Sezione dedicata ai progetti realizzati -->
+  <h2 id="projects-title" class="section-title">Progetti</h2>
+  <p class="lead">
+    I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.
+  </p>
+  <!-- Introduzione / testo informativo -->
+
+  <div class="projects-container">
+    <!-- Contenitore card progetti -->
+    <article class="project-card appear">
+      <!-- Singolo progetto, animazione appear -->
+      <h3 class="card-title">Progetto Demo</h3>
+      <!-- Titolo progetto -->
+      <p class="card-body">
+        Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.
+      </p>
+      <!-- Descrizione progetto -->
+      <div class="card-footer">
+        <!-- Footer card → tag/keywords -->
+        <span class="tag">PLC</span>
+        <span class="tag">EPLAN</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contact" class="section container appear" aria-labelledby="contact-title">
+  <!-- Sezione contatti -->
+  <h2 id="contact-title" class="section-title">Contatti</h2>
+  <p class="lead">
+    Email: <a href="mailto:ventura2001lavoro@gmail.com" class="highlight-link">ventura2001lavoro@gmail.com</a>
+  </p>
+  <!-- Link mailto → apre il client di posta dell’utente -->
+
+  <p class="lead">
+    LinkedIn: <a href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener" class="highlight-link">Alessio Ventura</a>
+  </p>
+  <!-- target="_blank" → apre LinkedIn in una nuova scheda -->
+  <!-- rel="noopener" → sicurezza / performance (evita accesso alla finestra parent) -->
+</section>
+
+</main>
+<!-- Fine MAIN -->
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <!-- role="contentinfo" → indica al screen reader che questo è il footer -->
+  <div class="socials" aria-hidden="false">
+    <!-- Contatti social → aria-hidden false perché utili a screen reader -->
+
+    <a class="social-btn" href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <!-- Link LinkedIn -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4.99v14H.5V8zm7.5 0h4.78v2.02h.07c.66-1.25 2.28-2.57 4.69-2.57 5.01 0 5.93 3.3 5.93 7.59V22H18.2v-6.51c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V22H8V8z"/>
+      </svg>
+      <!-- Icona SVG LinkedIn -->
+    </a>
+
+      <a class="social-btn" href="https://github.com/AleVented" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 .5C5.73.5.96 5.27.96 11.54c0 4.86 3.15 8.99 7.52 10.44.55.1.75-.24.75-.53 0-.26-.01-1.12-.02-2.03-3.06.67-3.71-1.31-3.71-1.31-.5-1.25-1.23-1.58-1.23-1.58-.99-.68.08-.67.08-.67 1.09.08 1.66 1.12 1.66 1.12.97 1.66 2.55 1.18 3.17.9.1-.7.38-1.17.69-1.44-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.17 1.12-2.94-.11-.28-.49-1.41.11-2.94 0 0 .92-.29 3.02 1.12a10.42 10.42 0 0 1 5.5 0c2.1-1.41 3.01-1.12 3.01-1.12.6 1.53.22 2.66.11 2.94.69.77 1.12 1.74 1.12 2.94 0 4.22-2.57 5.15-5.02 5.42.39.33.74.97.74 1.96 0 1.41-.01 2.54-.01 2.88 0 .29.2.64.76.53 4.36-1.45 7.51-5.58 7.51-10.44C23.04 5.27 18.27.5 12 .5Z"/>
+        </svg>
+      <!-- Icona SVG GitHub -->
+    </a>
+
+    <a class="social-btn" href="mailto:ventura2001lavoro@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 13.065 2 6.75V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6.75l-10 6.315ZM22 6H2l10 6 10-6Z"/>
+      </svg>
+      <!-- Icona email -->
+    </a>
+  </div>
+
+  <small>© 2025 – Portfolio di Alessio Ventura</small>
+  <!-- Copyright -->
+
+</footer>
+
+<!--
+  ELEMENTO DI UTILITÀ: INDICATORE DI SCROLL
+  - #scroll-progress può essere manipolato da JS per creare barra progresso scroll.
+  - aria-hidden="true" perché decorativo.
+-->
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<!-- JS esterno -->
+<!--
+  Manteniamo tutto JS in script.js (no inline) per separazione responsabilità.
+  script.js gestisce:
+    - preloader
+    - animazioni appear
+    - toggle tema
+    - timeline-card PDF
+    - menu hamburger mobile
+    - scroll progress
+-->
+<script src="script.js"></script>
 </body>
 </html>
