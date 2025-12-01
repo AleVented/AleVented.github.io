@@ -1,0 +1,39 @@
+/* =======================================================================================
+   footer.css — FOOTER E SOCIAL BUTTONS
+======================================================================================= */
+
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.social-btn {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: var(--text);
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+
+.social-btn:hover {
+  background: rgba(212,175,55,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(212,175,55,0.25);
+}
+
+/*Come usarlo negli altri moduli css:
+@import './footer.css';
+/* ---------- fine footer.css ---------- */

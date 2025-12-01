@@ -1,0 +1,24 @@
+/* =======================================================================================
+   hero.css — HERO / INTRODUZIONE
+======================================================================================= */
+.hero {
+  margin: 96px auto 40px;
+  padding: 44px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.02);
+  box-shadow: var(--shadow-strong);
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.hero-sub {
+  color: var(--muted);
+}
+
+/*Come usarlo negli altri moduli css:
+@import './hero.css';
+/* ---------- fine hero.css ---------- */

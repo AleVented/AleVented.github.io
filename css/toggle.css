@@ -1,0 +1,32 @@
+/* =======================================================================================
+   theme-toggle.css — DARK/LIGHT THEME TOGGLE
+======================================================================================= */
+.theme-toggle {
+  width: 40px; 
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--glass);
+  color: var(--text);
+  cursor: pointer;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: background .3s, transform .3s;
+}
+
+.theme-toggle:hover {
+  background: rgba(212,175,55,0.12);
+  transform: translateY(-1px);
+}
+
+.theme-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+/*Come usarlo negli altri moduli css:
+@import './toggle.css';
+/* ---------- fine toggle.css ---------- */

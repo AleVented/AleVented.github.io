@@ -1,0 +1,39 @@
+/* =======================================================================================
+   main.css — IMPORT MODULARE COMPLETO
+======================================================================================= */
+
+/* Variabili globali e palette */
+@import 'css/variables.css';
+
+/* Base styles, reset e sfondo animato */
+@import 'css/base.css';
+
+/* Topbar / Navigazione */
+@import 'css/topbar.css';
+
+/* Toggle dark/light theme */
+@import 'css/theme-toggle.css';
+
+/* Hero / Introduzione */
+@import 'css/hero.css';
+
+/* Section wrapper e tipografia */
+@import 'css/section.css';
+
+/* Graphic cards: esperienze, formazione, certificazioni, progetti */
+@import 'css/cards.css';
+
+/* Footer */
+@import 'css/footer.css';
+
+/* Responsive design */
+@import 'css/responsive.css';
+
+/* Animazioni di comparsa */
+@import 'css/animations.css';
+
+/* Utility classes generiche */
+@import 'css/utilities.css';
+
+/* Loader / Preloader */
+@import 'ccss/preloader.css';

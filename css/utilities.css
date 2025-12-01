@@ -1,0 +1,28 @@
+/* =======================================================================================
+   utilities.css — UTILITY CLASS E SCROLL PROGRESS
+======================================================================================= */
+
+/* Hamburger menu nascosto di default */
+.hamburger { 
+  display: none !important; 
+}
+
+/* Blocca lo scroll quando necessario */
+.no-scroll  { 
+  overflow: hidden; 
+}
+
+/* Barra di avanzamento scroll */
+#scroll-progress {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: #4f81c7;
+  z-index: 9999;
+}
+
+/*Come usarlo negli altri moduli css:
+@import './utilities.css';
+/* ---------- fine utilities.css ---------- */

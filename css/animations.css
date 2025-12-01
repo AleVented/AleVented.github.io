@@ -1,0 +1,20 @@
+/* =======================================================================================
+   animations.css — ANIMAZIONI DI COMPARSA
+======================================================================================= */
+
+.appear {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(.2,.9,.2,1);
+}
+
+.appear.appeared {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*Come usarlo negli altri moduli css:
+@import './animations.css';
+/* ---------- fine animations.css ---------- */

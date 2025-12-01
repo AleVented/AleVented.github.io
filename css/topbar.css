@@ -1,0 +1,72 @@
+/* =======================================================================================
+   topbar.css — TOPBAR / NAVIGATION
+   ---------------------------------------------------------------------------------------
+   Include:
+   - Barra superiore semitrasparente
+   - Brand (logo + nome)
+   - Desktop navigation
+   - Pulsante toggle dark/light
+======================================================================================= */
+
+/* ----------------- TOPBAR ----------------- */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 990;
+  background: rgba(10,18,32,0.75);
+  backdrop-filter: saturate(120%) blur(10px);
+  border-bottom: 1px solid rgba(212,175,55,0.1);
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* ----------------- BRAND ----------------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+}
+.brand svg { width: 42px; height: 42px; }
+.brand-text { letter-spacing: 0.3px; font-size: 1.2rem; }
+
+/* ----------------- NAV LINKS DESKTOP ----------------- */
+.top-nav {
+  display: flex;
+  gap: 6px;
+  background: var(--glass);
+  border-radius: 999px;
+  padding: 6px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.94rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: color .3s, background .3s, transform .3s;
+}
+
+.nav-link:hover {
+  background: rgba(212,175,55,0.12);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.nav-link:focus {
+  outline: 2px solid rgba(212,175,55,0.35);
+  outline-offset: 2px;
+}
+
+/*Come usarlo negli altri moduli css:
+@import './topbar.css';
+/* ---------- fine topbar.css ---------- */
