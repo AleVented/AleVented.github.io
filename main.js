@@ -24,6 +24,17 @@ import { initScrollProgress } from './js/scrollProgress.js';
 import { $, $all, getTopOffset, scrollToElementWithOffset, wait, safeOpen } from './js/utils.js';
 
 /**
+ * Avvio dell'app:
+ * - se DOM non è pronto, attendi DOMContentLoaded
+ * - altrimenti esegui immediatamente
+ */
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+/**
  * Funzione principale di inizializzazione.
  * Esegue tutte le funzioni in ordine logico.
  */
@@ -67,17 +78,6 @@ function init() {
   // Barra di progresso scroll
   // -----------------------------
   initScrollProgress();
-}
-
-/**
- * Avvio dell'app:
- * - se DOM non è pronto, attendi DOMContentLoaded
- * - altrimenti esegui immediatamente
- */
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
 }
 
 /* ---------- fine main.js ---------- */

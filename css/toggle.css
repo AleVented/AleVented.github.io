@@ -6,7 +6,8 @@
   height: 40px;
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.12);
-  background: var(--glass);
+  background: transparent;
+  padding: 0;
   color: var(--text);
   cursor: pointer;
 
@@ -18,14 +19,25 @@
 }
 
 .theme-toggle:hover {
-  background: rgba(212,175,55,0.12);
+  background: rgba(212,175,55,0.12); /* leggero alone dorato al passaggio */
   transform: translateY(-1px);
 }
 
 .theme-toggle svg {
   width: 22px;
   height: 22px;
+  background: transparent;
+  display: block;
 }
+
+.theme-toggle img {
+  display: block;      /* rimuove eventuali spazi bianchi sotto l’immagine */
+  width: 22px;
+  height: 22px;
+  background: transparent; /* sicuro */
+}
+
+
 
 /*Come usarlo negli altri moduli css:
 @import './toggle.css';
