@@ -1,0 +1,93 @@
+@startuml
+title UML – Data Analysis Project
+
+skinparam classAttributeIconSize 0
+
+' ================================
+' CLASSI PRINCIPALI
+' ================================
+
+class DataLoader {
+    - path : str
+    - df : DataFrame
+    + __init__(path:str)
+    + load_data() : DataFrame
+    + is_loaded() : bool
+    + show_head()
+}
+
+class DataCleaner {
+    + df : DataFrame
+    + __init__(df:DataFrame)
+    + clean_data_types() : DataFrame
+    + fill_missing_values() : DataFrame
+    + remove_duplicates() : DataFrame
+    + remove_negatives_values() : DataFrame
+    + remove_unknown_values() : DataFrame
+    + full_clean() : DataFrame
+    + summary()
+}
+
+class DataAnalyzer {
+    + df : DataFrame
+    + __init__(df:DataFrame)
+    + get_description()
+    + get_missing_values()
+    + get_dtypes()
+    + get_correlations()
+    + complete_analysis()
+    + get_mean_by_gender()
+    + get_usage_by_gender()
+    + get_top_locations()
+}
+
+class DataVisualizer {
+    + df : DataFrame
+    + __init__(df:DataFrame)
+    + plot_distribution(col)
+    + plot_correlation_matrix()
+    + plot_missing_values()
+    + plot_gender_comparison(col)
+    + plot_top_location(top5)
+    + plot_scatter(col1, col2)
+}
+
+class DataExporter {
+    + df : DataFrame
+    + __init__(df:DataFrame)
+    + export_to_json()
+    + export_to_txt()
+    + export_analysis_to_json(results)
+    + save_figure(fig, filename)
+}
+
+class SimplePredictor {
+    + df : DataFrame
+    + model
+    + __init__(df:DataFrame)
+    + train()
+    + predict_age(x:float)
+}
+
+class Main {
+    + main()
+}
+
+' ================================
+' RELAZIONI
+' ================================
+
+Main --> DataLoader
+Main --> DataCleaner
+Main --> DataAnalyzer
+Main --> DataVisualizer
+Main --> DataExporter
+Main --> SimplePredictor
+
+DataCleaner --> DataAnalyzer : update df
+DataCleaner --> DataVisualizer : update df
+DataCleaner --> DataExporter : update df
+DataAnalyzer --> DataVisualizer : provide analysis results
+DataAnalyzer --> DataExporter : provide analysis results
+
+@enduml

@@ -1,0 +1,34 @@
+<!-- Logo AV premium, monocromatico navy, proporzioni armoniche (Golden Ratio) -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Navy premium -->
+  <defs>
+    <style>
+      .stroke {
+        stroke: #0a1a33; /* Navy scuro premium */
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+
+  <!-- Struttura basata sulla Sezione Aurea -->
+  <!-- Punto centrale 100,100; proporzioni 1 : 1.618 -->
+
+  <!-- A stilizzata -->
+  <path
+    d="M50 150 L100 40 L150 150"
+    class="stroke"
+    stroke-width="12"
+    fill="none"
+  />
+
+  <!-- V integrata nella A secondo rapporto aureo -->
+  <path
+    d="M70 150 L100 95 L130 150"
+    class="stroke"
+    stroke-width="8"
+    fill="none"
+  />
+
+</svg>

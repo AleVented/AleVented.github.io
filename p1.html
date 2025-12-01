@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/utilities.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/badges.css" />
 
   <style>
     /* piccole override per la pagina progetto */
@@ -46,7 +47,7 @@
       </a>
 
       <nav class="top-nav" role="navigation" aria-label="Main navigation">
-        <a class="nav-link" href="/projects.html">Progetti</a>
+        <a class="nav-link" href="/index.html">Home</a>
         <a class="nav-link" href="/about.html">Chi sono</a>
         <a class="nav-link" href="/contact.html">Contatti</a>
         <a id="open-repo" class="nav-link" href="#" onclick="openRepo(event)">Apri repository</a>
@@ -69,7 +70,7 @@
         <div class="kv"><strong>Stack:</strong> Python • pandas • matplotlib</div>
         <div class="kv"><strong>Files:</strong> data_loader, data_cleaner, data_analyzer, data_visualizer, data_exporter, predictor, main</div>
         <div class="kv"><strong>Dataset:</strong> 1000 righe, valori misti (numerici & categorici)</div>
-        <div class="kv"><strong>Output:</strong> grafici PNG, CSV pulito, modello predittivo</div>
+        <div class="kv"><strong>Output:</strong> grafici PNG, CSV pulito, analisi</div>
       </div>
 
       <div style="margin-top:18px;">
@@ -94,13 +95,19 @@
           <!-- DataLoader -->
           <article style="margin-top:18px;">
             <h3>data_loader.py — Caricamento dati</h3>
-            <p><strong>Responsabilità:</strong> caricare CSV (o sorgenti future), validare path, normalizzare tipi base.</p>
+            <p><strong>Responsabilità:</strong> caricare CSV (o sorgenti future), normalizzare dtypes.</p>
             <pre class="code-sample"><code># Esempio d'uso (snippet)
 from data_loader import DataLoader
 
-loader = DataLoader(path="data/raw/dataset.csv")
-df = loader.load_csv()
-# loader applica check su existence, empty, col names
+path = input("\nInserisci il percorso del file CSV: ")
+
+loader = DataLoader(path)
+df = loader.load_data()
+
+if loader.is_loaded():
+print("\nDataset caricato correttamente!")
+loader.show_head()
+
 </code></pre>
             <p class="muted">Note: sempre usare con try/except se integrato in pipeline più ampia.</p>
           </article>
@@ -108,69 +115,88 @@ df = loader.load_csv()
           <!-- DataCleaner -->
           <article style="margin-top:18px;">
             <h3>data_cleaner.py — Pulizia e preprocessing</h3>
-            <p><strong>Responsabilità:</strong> imputazione NaN, normalizzazione colonne, conversioni tipi, gestione outlier semplici.</p>
+            <p><strong>Responsabilità:</strong> pulizia dei tipi di dato, riempimento valori vuoti, rimozione duplicati, rimozione valori negativi, rimozione valori NaN.</p>
             <pre class="code-sample"><code># Esempio d'uso (snippet)
 from data_cleaner import DataCleaner
 
 cleaner = DataCleaner(df)
-df_clean = (cleaner
-            .drop_duplicates()
-            .impute_missing(strategy="median", columns=["age","salary"])
-            .encode_categorical(columns=["city","device"]))
+df = cleaner.clean_data_types()
+df = cleaner.fill_missing_values()
+df = cleaner.remove_duplicates()
+df = cleaner.remove_negatives_values()
+df = cleaner.remove_unknown_values()
+df = cleaner.full_clean()
+cleaner.summary()
+
 </code></pre>
           </article>
 
           <!-- DataAnalyzer -->
           <article style="margin-top:18px;">
             <h3>data_analyzer.py — Statistiche & aggregazioni</h3>
-            <p><strong>Responsabilità:</strong> calcolo medie, min/max, distribuzioni, gruppi (es. top location).</p>
+            <p><strong>Responsabilità:</strong> descrizione statistica, analisi valori vuoti, analisi dtypes, correlazioni, medie....</p>
             <pre class="code-sample"><code># Esempio d'uso (snippet)
 from data_analyzer import DataAnalyzer
 
-an = DataAnalyzer(df_clean)
-summary = an.describe_all()
-top_locations = an.get_top_location(value_col="revenue", group_col="city")
+print(analyzer.get_description())
+print(analyzer.get_missing_values())
+print(analyzer.get_dtypes())
+print(analyzer.get_correlations())
+print(analyzer.complete_analysis())
+print(analyzer.get_mean_by_gender())
+print(analyzer.get_usage_by_gender())
+print(analyzer.get_top_locations())
+
 </code></pre>
           </article>
 
           <!-- DataVisualizer -->
           <article style="margin-top:18px;">
             <h3>data_visualizer.py — Visualizzazioni</h3>
-            <p><strong>Responsabilità:</strong> istogrammi, trend, heatmap (se necessario), export PNG/SVG.</p>
+            <p><strong>Responsabilità:</strong> plotting delle analisi eseguite; istogrammi, trend o heatmap.</p>
             <pre class="code-sample"><code># Esempio d'uso (snippet)
 from data_visualizer import DataVisualizer
 
-viz = DataVisualizer(df_clean)
-viz.plot_distribution("age")
-viz.plot_trend("date","sales")
-viz.save("docs/plots/trend_sales.png")
+visualizer = DataVisualizer(df)
+fig = visualizer.plot_distribution(col)
+fig = visualizer.plot_correlation_matrix()
+fig = visualizer.plot_missing_values()
+fig = visualizer.plot_gender_comparison(col)
+top = DataAnalyzer(df).get_top_locations()
+fig = visualizer.plot_top_location(top)
+col2 = input("Seconda colonna: ")
+fig = visualizer.plot_scatter(col, col2)
+
 </code></pre>
           </article>
 
           <!-- DataExporter -->
           <article style="margin-top:18px;">
             <h3>data_exporter.py — Esportazione risultati</h3>
-            <p><strong>Responsabilità:</strong> esportare CSV puliti, report HTML/PDF, e grafici già renderizzati.</p>
+            <p><strong>Responsabilità:</strong> esportazione delle analisi in .json, .txt o .png.</p>
             <pre class="code-sample"><code># Esempio d'uso (snippet)
 from data_exporter import DataExporter
 
-exp = DataExporter(df_clean)
-exp.to_csv("data/clean/dataset_clean.csv")
-exp.save_report("reports/overview.html")
+exporter = DataExporter(df)
+filename = input("Nome file (esempio: grafico.jpeg): ")
+exporter.save_figure(fig, filename)
+exporter.export_to_json()
+exporter.export_to_txt()
+exporter.export_analysis_to_json(DataAnalyzer(df).complete_analysis())
 </code></pre>
           </article>
 
           <!-- Predictor -->
           <article style="margin-top:18px;">
             <h3>predictor.py — Modello predittivo minimale</h3>
-            <p><strong>Responsabilità:</strong> pipeline di training (scikit-learn), serializzazione modello, predizioni batch.</p>
+            <p><strong>Responsabilità:</strong> pipeline di training (scikit-learn), predizioni batch.</p>
             <pre class="code-sample"><code># Esempio d'uso (snippet)
 from predictor import Predictor
 
-pred = Predictor()
-pred.train(X_train, y_train)
-y_pred = pred.predict(X_test)
-pred.save_model("models/simple_model.joblib")
+predictor = SimplePredictor(df)
+predictor.train()
+x = float(input("\nInserisci valore per la predizione dell'età: "))
+print("Età predetta:", predictor.predict_age(x))
 </code></pre>
           </article>
 
@@ -184,18 +210,18 @@ from data_cleaner import DataCleaner
 from data_analyzer import DataAnalyzer
 from data_visualizer import DataVisualizer
 from data_exporter import DataExporter
-from predictor import Predictor
+from predictor import SimplePredictor
 
-def run():
-    df = DataLoader("data/raw/dataset.csv").load_csv()
-    df_clean = DataCleaner(df).run_all()
-    DataAnalyzer(df_clean).report()
-    DataVisualizer(df_clean).render_all()
-    DataExporter(df_clean).export_all()
-    Predictor().train_and_save(df_clean)
+def main():
+    loader = DataLoader()
+    cleaner = None
+    analyzer = None
+    visualizer = None
+    exporter = None
+    predictor = None
 
 if __name__ == "__main__":
-    run()
+    main()
 </code></pre>
           </article>
 
@@ -263,10 +289,11 @@ DataExporter(df_clean).to_csv("data/clean/dataset_clean.csv")
 
             <h3 style="margin-top:18px;">Badge & Stato</h3>
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
-              <img src="assets/badges/python.svg" alt="python" style="height:28px">
-              <img src="assets/badges/pandas.svg" alt="pandas" style="height:28px">
-              <span class="badge">1000 rows</span>
-              <span class="badge">v1.0</span>
+              <span class="badge primary">Python</span>
+              <span class="badge tech">Pandas</span>
+              <span class="badge tech">Matplotlib</span>
+              <span class="badge tech">Scikit-learn</span>
+              <span class="badge status">Completato</span>
             </div>
           </div>
         </aside>

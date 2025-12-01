@@ -1,163 +1,139 @@
-# Documentazione Tecnica - Analisi Dati
+# 🧠 MAIN -- Sistema di Analisi Dati
 
-## Moduli Inclusi
-
--   **Data Loader**
--   **Data Cleaner**
--   **Data Analyzer**
--   **Data Visualizer**
--   **Data Exporter**
--   **Predictor**
--   **Main**
-
-------------------------------------------------------------------------
-
-## 1. Data Loader
-
-### Funzione principale
-
-Responsabile del caricamento dei dati da file CSV, Excel o altre fonti
-strutturate.
-
-### Funzionalità
-
--   Verifica percorso file
--   Gestione errori di lettura
--   Logging dello stato di caricamento
--   Conversione immediata in DataFrame
-
-### Output
-
-Restituisce un oggetto DataFrame pronto per gli step successivi.
+**Autore:** Alessio\
+**File:** `main.py`\
+**Tipo:** Modulo eseguibile (entry point del progetto)\
+**Compatibile con:**\
+- `DataLoader`\
+- `DataCleaner`\
+- `DataAnalyzer`\
+- `DataVisualizer`\
+- `DataExporter`\
+- `SimplePredictor`
 
 ------------------------------------------------------------------------
 
-## 2. Data Cleaner
+## 📌 Descrizione generale
 
-### Funzione principale
+Il file `main.py` rappresenta il cuore del progetto: un'applicazione
+interattiva a menu testuale che consente all'utente di:
 
-Pulizia e pre-elaborazione dei dati.
+-   Caricare dataset CSV\
+-   Eseguire pulizia dati step-by-step\
+-   Analizzare statisticamente il dataset\
+-   Generare grafici con Matplotlib\
+-   Esportare dati e analisi\
+-   Addestrare un modello di regressione lineare semplice
 
-### Funzionalità
-
--   Gestione valori nulli
--   Conversione tipi dati
--   Rimozione duplicati
--   Normalizzazione nomi colonne
--   Filtraggio dataset
-
-### Output
-
-DataFrame sanificato, con schema coerente e pronto per analisi.
+Il programma funziona completamente da terminale e non richiede
+interfacce grafiche.
 
 ------------------------------------------------------------------------
 
-## 3. Data Analyzer
+## 🏗 Architettura del main
 
-### Funzione principale
+Il flusso del programma è strutturato in 6 macro-sezioni:
 
-Analisi statistica e matematica del dataset.
-
-### Funzionalità
-
--   Statistiche descrittive
--   Analisi per colonna
--   Individuazione outlier
--   Calcolo medie, varianze, distribuzioni
--   Aggregazioni per gruppi
-
-### Output
-
-Oggetti numerici e report statistici, passabili al visualizzatore.
+1.  Carica dataset\
+2.  Pulisci dati\
+3.  Analizza dataset\
+4.  Visualizza grafici\
+5.  Esporta dati\
+6.  Modello di predizione
 
 ------------------------------------------------------------------------
 
-## 4. Data Visualizer
+## 🔧 Inizializzazione delle componenti
 
-### Funzione principale
+``` python
+loader = DataLoader()
+cleaner = None
+analyzer = None
+visualizer = None
+exporter = None
+predictor = None
 
-Creazione grafici e visualizzazioni dai dati elaborati.
-
-### Funzionalità
-
--   Istogrammi
--   Scatter plot
--   Box plot
--   Line plot
--   Evidenziazione misure statistiche calcolate dal Data Analyzer
-
-### Output
-
-Grafici Matplotlib visualizzabili o salvabili.
+df = None
+```
 
 ------------------------------------------------------------------------
 
-## 5. Data Exporter
+## 📌 1) Caricamento Dataset
 
-### Funzione principale
-
-Esporta dati e risultati.
-
-### Funzionalità
-
--   Salvataggio CSV, Excel, JSON
--   Gestione path di output
--   Sovrascrittura controllata
--   Logging dei file generati
-
-### Output
-
-File su disco, pronti per uso esterno.
+Operazioni principali: lettura CSV, preview dei dati, inizializzazione
+moduli collegati (`DataCleaner`, `DataAnalyzer`, ecc.).
 
 ------------------------------------------------------------------------
 
-## 6. Predictor
+## 📌 2) Pulizia Dati
 
-### Funzione principale
+Include operazioni come:\
+- conversione tipi\
+- gestione valori mancanti\
+- rimozione duplicati\
+- rimozione negativi\
+- pulizia completa\
+- riepilogo
 
-Predizione basata su un modello addestrato.
-
-### Funzionalità
-
--   Pre-processing coerente con Data Cleaner
--   Caricamento modello
--   Predizione singola o batch
--   Gestione errori e output formattato
-
-### Output
-
-Valori previsti + eventuali metriche.
+Tutte le classi vengono aggiornate con il nuovo DataFrame.
 
 ------------------------------------------------------------------------
 
-## 7. Main
+## 📌 3) Analisi del Dataset
 
-### Funzione principale
-
-Coordinamento di tutti i moduli.
-
-### Funzionalità
-
--   Orchestrazione pipeline: Load → Clean → Analyze → Visualize → Export
-    / Predict
--   Menu o interfaccia principale
--   Logging centralizzato
+Funzioni principali:\
+- descrizione statistica\
+- missing values\
+- tipi di dato\
+- correlazioni\
+- analisi completa\
+- metriche per genere\
+- top luoghi
 
 ------------------------------------------------------------------------
 
-## Architettura Complessiva
+## 📌 4) Visualizzazione Grafici
 
-    Main
-     ├── Data Loader
-     ├── Data Cleaner
-     ├── Data Analyzer
-     ├── Data Visualizer
-     ├── Data Exporter
-     └── Predictor
+Generati tramite `DataVisualizer`.\
+Possibilità di salvare i grafici tramite `DataExporter`.
 
 ------------------------------------------------------------------------
 
-## Note Finali
+## 📌 5) Esportazione Dati
 
-Questa documentazione descrive la struttura modulare del progetto, utile
-per manutenzione, estensioni e integrazioni future.
+Supporta:\
+- JSON\
+- TXT\
+- Analisi completa in JSON
+
+------------------------------------------------------------------------
+
+## 📌 6) Predizione (Machine Learning)
+
+Addestramento modello con `SimplePredictor` e predizione dell'età basata
+su input numerico.
+
+------------------------------------------------------------------------
+
+## ▶ Avvio del programma
+
+``` python
+if __name__ == "__main__":
+    main()
+```
+
+------------------------------------------------------------------------
+
+## 📦 Dipendenze
+
+-   pandas\
+-   matplotlib\
+-   moduli interni del progetto
+
+------------------------------------------------------------------------
+
+## 📘 Conclusione
+
+Il file `main.py` controlla l'intero sistema: dataset, pulizia, analisi,
+grafici, esportazioni e modello predittivo.\
+Struttura modulare, estendibile e perfetta per workflow di analisi dati.
