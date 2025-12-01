@@ -5,7 +5,7 @@ import { safeOpen } from './utils.js';
 import { SELECTORS } from './config.js';
 
 /**
- * Inizializza le timeline-card cliccabili e apre PDF se presente
+ * Inizializza le timeline-card cliccabili e apre PDF/html se presente
  */
 export function initTimelineToggle() {
   const cards = document.querySelectorAll(SELECTORS.timelineCard);
@@ -29,9 +29,16 @@ export function initTimelineToggle() {
     cardEl.classList.toggle('collapsed', !isOpen);
     cardEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 
+    // Apri PDF se presente
     const pdf = cardEl.dataset.pdf;
     if (isOpen && pdf) {
       safeOpen(pdf);
+    }
+
+    // Apri HTML se presente
+    const html = cardEl.dataset.html;
+    if (isOpen && html) {
+      safeOpen(html);
     }
   }
 }
@@ -49,5 +56,5 @@ export function respectReducedMotion() {
   }
 }
 //Come usarlo negli altri moduli JS:
-//import { initTimelineToggle, respectReducedMotion } from './timeline.js';
+//import { initTimelineToggle, initProjectCardToggle, respectReducedMotion } from './timeline.js';
 /* ---------- fine timeline.js ---------- */

@@ -337,24 +337,32 @@
     I progetti saranno aggiunti presto. Qui verranno mostrate card dinamiche e dettagli tecnici.
   </p>
   <!-- Introduzione / testo informativo -->
+  
+<div class="projects-container">
+  <!-- Contenitore card progetti -->
+  <article class="project-card appear" data-html="html/demo.html">
+    <!-- Titolo progetto -->
+    <h3 class="card-title">Progetto Demo</h3>
 
-  <div class="projects-container">
-    <!-- Contenitore card progetti -->
-    <article class="project-card appear">
-      <!-- Singolo progetto, animazione appear -->
-      <h3 class="card-title">Progetto Demo</h3>
-      <!-- Titolo progetto -->
-      <p class="card-body">
-        Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.
-      </p>
-      <!-- Descrizione progetto -->
-      <div class="card-footer">
-        <!-- Footer card → tag/keywords -->
-        <span class="tag">PLC</span>
-        <span class="tag">EPLAN</span>
-      </div>
-    </article>
-  </div>
+    <!-- Descrizione progetto -->
+    <p class="card-body">
+      Descrizione sintetica del progetto. Quando caricherai i file appariranno qui con anteprime e link.
+    </p>
+
+    <!-- Mini timeline interna al progetto (decorativa o cliccabile a parte se vuoi) -->
+    <div class="project-timeline">
+      <article class="timeline-card" data-html="html/empty.html">
+        <span class="timeline-date" style="font-weight: bold; color: yellow; text-decoration: underline;">Maggiori dettagli</span>
+      </article>
+    </div>
+
+    <!-- Footer card → tag/keywords -->
+    <div class="card-footer">
+      <span class="tag">PLC</span>
+      <span class="tag">EPLAN</span>
+    </div>
+  </article>
+</div>
 </section>
 
 <!-- CONTATTI -->

@@ -19,7 +19,7 @@ import { initBgParticles } from './js/bgParticles.js';
 import { initAppearOnScroll } from './js/appear.js';
 import { initThemeToggle } from './js/themeToggle.js';
 import { initSmoothAnchors } from './js/smoothAnchors.js';
-import { initTimelineToggle, respectReducedMotion } from './js/timeline.js';
+import { initTimelineToggle, respectReducedMotion } from './js/cards.js';
 import { initScrollProgress } from './js/scrollProgress.js';
 import { $, $all, getTopOffset, scrollToElementWithOffset, wait, safeOpen } from './js/utils.js';
 

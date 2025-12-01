@@ -82,6 +82,7 @@
   border-radius: 12px;
   border: 1px solid rgba(212,175,55,0.10);
   box-shadow: 0 12px 36px rgba(0,0,0,0.55);
+  cursor: pointer;
   transition: transform .36s cubic-bezier(.2,.9,.2,1),
               box-shadow .36s,
               filter .3s;
@@ -91,6 +92,40 @@
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 28px 60px rgba(212,175,55,0.18);
 }
+
+/* Timeline interna alla card progetto */
+
+.project-timeline {
+  margin-bottom: 16px; /* spazio sotto la timeline prima dei tag */
+}
+
+.card-footer {
+  display: flex;       /* mantiene i tag in fila */
+  flex-wrap: wrap;     /* se tanti tag vanno a capo */
+  gap: 8px;            /* spazio tra i tag */
+}
+
+
+/* Tags/keywords all'interno delle card progetti */
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;       /* Spazio interno */
+  margin-right: 6px;       /* Distanza tra i tag */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* contorno semi-trasparente */
+  border-radius: 12px;     /* bordi arrotondati */
+  background-color: rgba(255, 255, 255, 0.05); /* leggero sfondo interno */
+  color: #fff;             /* testo bianco */
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* leggero effetto hover */
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
 
 /*Come usarlo negli altri moduli css:
 @import './cards.css';
