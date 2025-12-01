@@ -12,10 +12,12 @@ export function initAppearOnScroll() {
   if (!cards || cards.length === 0) return;
 
   // assegna transition-delay progressivo per effetto "smooth reveal"
+  const MAX_DELAY = 0.5; // massimo mezzo secondo
   cards.forEach((el, i) => {
-    // delay progressivo: 0.1s, 0.2s, 0.3s, ...
-    el.style.transitionDelay = `${i * SMOOTH_DELAY_STEP}s`;
+    const delay = Math.min(i * SMOOTH_DELAY_STEP, MAX_DELAY);
+    el.style.transitionDelay = `${delay}s`;
   });
+
 
   // crea IntersectionObserver per rivelare elementi quando entrano in viewport
   const io = new IntersectionObserver((entries, observer) => {
