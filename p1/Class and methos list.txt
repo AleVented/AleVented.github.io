@@ -1,0 +1,62 @@
+Class: DataLoader
+Method 1: 	__init__
+Method 2: 	warn
+Method 3: 	load_data
+Method 4: 	is_loaded
+Method 5: 	show_head
+Method 6: 	get_df
+
+Class: DataCleaner
+Method 1: 	__init__
+Method 2: 	set_dataframe
+Method 3: 	warn
+Method 4: 	clean_data_types
+Method 5: 	fill_missing_values
+Method 6: 	remove_duplicates
+Method 7: 	remove_negatives_values
+Method 8: 	remove_unknown_values
+Method 9: 	full_clean
+Method 10: 	summary
+
+Class: DataAnalyzer
+Method 1: 	__init__
+Method 2: 	warn
+Method 3: 	check_columns
+Method 4: 	get_description
+Method 5: 	get_missing_values
+Method 6: 	get_dtypes
+Method 7: 	get_correlations
+Method 8: 	complete_analysis
+Method 9: 	get_mean_by_gender
+Method 10: 	get_usage_by_gender
+Method 11: 	get_top_locations
+Method 12: 	complete_aggregated_analysis
+
+Class: DataVisualizer
+Method 1: 	__init__
+Method 2: 	warn
+Method 3: 	check_columns
+Method 4: 	check_column_dtype
+Method 5: 	format_label
+Method 6: 	plot_distribution
+Method 7: 	plot_correlation_matrix
+Method 8: 	plot_missing_values
+Method 9: 	plot_gender_comparison
+Method 10: 	plot_top_location
+Method 11: 	plot_scatter
+
+Class: DataExporter
+Method 1: 	__init__
+Method 2: 	set_dataframe
+Method 3: 	warn
+Method 4: 	export_to_json
+Method 5: 	export_to_txt
+Method 6: 	export_analysis_to_json
+Method 7: 	save_plot
+Method 8: 	save_figure
+
+Class: SimplePredictor
+Method 1: 	__init__
+Method 2: 	warn
+Method 3: 	train
+Method 4: 	predict_age

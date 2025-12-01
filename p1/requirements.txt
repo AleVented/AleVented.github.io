@@ -1,0 +1,4 @@
+import pandas
+import matplotlib
+import seaborn
+print("Tutto ok!")

@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Analisi Dati: Dataset 1000-righe (Python) — Portfolio</title>
+
+  <!-- CSS (includi i file che hai fornito) -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/topbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/section.css" />
+  <link rel="stylesheet" href="css/cards.css" />
+  <link rel="stylesheet" href="css/utilities.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+
+  <style>
+    /* piccole override per la pagina progetto */
+    .hero { max-width: var(--container-w); }
+    .meta-kv { display:flex; gap: 18px; flex-wrap:wrap; margin-top:12px; }
+    .meta-kv .kv { background: rgba(255,255,255,0.02); padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); }
+    pre.code-sample { background: rgba(0,0,0,0.28); padding:14px; border-radius:10px; overflow:auto; font-size:0.95rem; }
+    .two-col { display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:start; }
+    @media (max-width:900px){ .two-col { grid-template-columns: 1fr; } .hero { margin-top:120px; } }
+    .uml-preview { width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.04); display:block; max-height:420px; object-fit:cover; }
+    .btn { display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border-radius:10px; background:var(--panel); border:1px solid rgba(255,255,255,0.06); text-decoration:none; color:var(--text); font-weight:600; }
+    .btn.primary { background: linear-gradient(90deg, rgba(31,58,95,0.9), rgba(31,58,95,0.8)); border-color: rgba(212,175,55,0.12); color:var(--accent); box-shadow: 0 10px 30px rgba(31,58,95,0.25); }
+    .file-list { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+    .file-item { padding:10px 12px; background:var(--panel); border-radius:10px; border:1px solid rgba(255,255,255,0.03); display:flex; justify-content:space-between; align-items:center; }
+    .badge { font-size:0.8rem; padding:4px 8px; border-radius:8px; background:rgba(255,255,255,0.03); color:var(--muted); border:1px solid rgba(255,255,255,0.03); }
+  </style>
+</head>
+<body>
+  <!-- topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="Torna alla home">
+        <!-- semplice logo svg -->
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="48" height="48" rx="10" fill="#1f3a5f"></rect>
+          <path d="M12 28 L20 16 L28 28 Z" fill="#d4af37"></path>
+        </svg>
+        <div class="brand-text">Alessio Ventura</div>
+      </a>
+
+      <nav class="top-nav" role="navigation" aria-label="Main navigation">
+        <a class="nav-link" href="/projects.html">Progetti</a>
+        <a class="nav-link" href="/about.html">Chi sono</a>
+        <a class="nav-link" href="/contact.html">Contatti</a>
+        <a id="open-repo" class="nav-link" href="#" onclick="openRepo(event)">Apri repository</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- content -->
+  <main class="container" role="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="hero-title">Analisi Dati: Dataset 1000-righe (Python)</h1>
+      <p class="hero-sub">
+        Mini-framework Python per il caricamento, pulizia, analisi e visualizzazione di un dataset da 1000 righe.
+        Architettura modulare con: DataLoader, DataCleaner, DataAnalyzer, DataVisualizer, DataExporter, Predictor.
+      </p>
+
+      <div class="meta-kv" style="margin-top:18px;">
+        <div class="kv"><strong>Stack:</strong> Python • pandas • matplotlib</div>
+        <div class="kv"><strong>Files:</strong> data_loader, data_cleaner, data_analyzer, data_visualizer, data_exporter, predictor, main</div>
+        <div class="kv"><strong>Dataset:</strong> 1000 righe, valori misti (numerici & categorici)</div>
+        <div class="kv"><strong>Output:</strong> grafici PNG, CSV pulito, modello predittivo</div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <a id="repo-btn" class="btn primary" href="#" onclick="openRepo(event)">Apri repository su GitHub</a>
+        <a class="btn" href="p1/PlantUML.png" download>Scarica UML</a>
+        <a class="btn" href="p1/techdoc.md" download>Scarica documento tecnico</a>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT: two columns -->
+    <section style="margin:28px 0;">
+      <div class="two-col">
+
+        <!-- LEFT: detailed technical explanation -->
+        <div>
+          <h2>Spiegazione tecnica dettagliata</h2>
+          <p>
+            Il progetto è organizzato in moduli Python, ciascuno con responsabilità chiare. Questo garantisce facilità di testing,
+            riusabilità e chiarezza architetturale. Di seguito una descrizione per file con snippet esemplificativi.
+          </p>
+
+          <!-- DataLoader -->
+          <article style="margin-top:18px;">
+            <h3>data_loader.py — Caricamento dati</h3>
+            <p><strong>Responsabilità:</strong> caricare CSV (o sorgenti future), validare path, normalizzare tipi base.</p>
+            <pre class="code-sample"><code># Esempio d'uso (snippet)
+from data_loader import DataLoader
+
+loader = DataLoader(path="data/raw/dataset.csv")
+df = loader.load_csv()
+# loader applica check su existence, empty, col names
+</code></pre>
+            <p class="muted">Note: sempre usare con try/except se integrato in pipeline più ampia.</p>
+          </article>
+
+          <!-- DataCleaner -->
+          <article style="margin-top:18px;">
+            <h3>data_cleaner.py — Pulizia e preprocessing</h3>
+            <p><strong>Responsabilità:</strong> imputazione NaN, normalizzazione colonne, conversioni tipi, gestione outlier semplici.</p>
+            <pre class="code-sample"><code># Esempio d'uso (snippet)
+from data_cleaner import DataCleaner
+
+cleaner = DataCleaner(df)
+df_clean = (cleaner
+            .drop_duplicates()
+            .impute_missing(strategy="median", columns=["age","salary"])
+            .encode_categorical(columns=["city","device"]))
+</code></pre>
+          </article>
+
+          <!-- DataAnalyzer -->
+          <article style="margin-top:18px;">
+            <h3>data_analyzer.py — Statistiche & aggregazioni</h3>
+            <p><strong>Responsabilità:</strong> calcolo medie, min/max, distribuzioni, gruppi (es. top location).</p>
+            <pre class="code-sample"><code># Esempio d'uso (snippet)
+from data_analyzer import DataAnalyzer
+
+an = DataAnalyzer(df_clean)
+summary = an.describe_all()
+top_locations = an.get_top_location(value_col="revenue", group_col="city")
+</code></pre>
+          </article>
+
+          <!-- DataVisualizer -->
+          <article style="margin-top:18px;">
+            <h3>data_visualizer.py — Visualizzazioni</h3>
+            <p><strong>Responsabilità:</strong> istogrammi, trend, heatmap (se necessario), export PNG/SVG.</p>
+            <pre class="code-sample"><code># Esempio d'uso (snippet)
+from data_visualizer import DataVisualizer
+
+viz = DataVisualizer(df_clean)
+viz.plot_distribution("age")
+viz.plot_trend("date","sales")
+viz.save("docs/plots/trend_sales.png")
+</code></pre>
+          </article>
+
+          <!-- DataExporter -->
+          <article style="margin-top:18px;">
+            <h3>data_exporter.py — Esportazione risultati</h3>
+            <p><strong>Responsabilità:</strong> esportare CSV puliti, report HTML/PDF, e grafici già renderizzati.</p>
+            <pre class="code-sample"><code># Esempio d'uso (snippet)
+from data_exporter import DataExporter
+
+exp = DataExporter(df_clean)
+exp.to_csv("data/clean/dataset_clean.csv")
+exp.save_report("reports/overview.html")
+</code></pre>
+          </article>
+
+          <!-- Predictor -->
+          <article style="margin-top:18px;">
+            <h3>predictor.py — Modello predittivo minimale</h3>
+            <p><strong>Responsabilità:</strong> pipeline di training (scikit-learn), serializzazione modello, predizioni batch.</p>
+            <pre class="code-sample"><code># Esempio d'uso (snippet)
+from predictor import Predictor
+
+pred = Predictor()
+pred.train(X_train, y_train)
+y_pred = pred.predict(X_test)
+pred.save_model("models/simple_model.joblib")
+</code></pre>
+          </article>
+
+          <!-- Main -->
+          <article style="margin-top:18px;">
+            <h3>main.py — Pipeline orchestrator</h3>
+            <p><strong>Responsabilità:</strong> punto d'entrata; costruisce pipeline (load→clean→analyze→viz→export→predict).</p>
+            <pre class="code-sample"><code># main.py (semplificato)
+from data_loader import DataLoader
+from data_cleaner import DataCleaner
+from data_analyzer import DataAnalyzer
+from data_visualizer import DataVisualizer
+from data_exporter import DataExporter
+from predictor import Predictor
+
+def run():
+    df = DataLoader("data/raw/dataset.csv").load_csv()
+    df_clean = DataCleaner(df).run_all()
+    DataAnalyzer(df_clean).report()
+    DataVisualizer(df_clean).render_all()
+    DataExporter(df_clean).export_all()
+    Predictor().train_and_save(df_clean)
+
+if __name__ == "__main__":
+    run()
+</code></pre>
+          </article>
+
+          <hr style="margin:20px 0; border-color:rgba(255,255,255,0.04)">
+
+          <h3>Strumenti & Requisiti</h3>
+          <ul>
+            <li>Python 3.10+</li>
+            <li>pandas (manipolazione dati)</li>
+            <li>matplotlib (visualizzazione)</li>
+            <li>scikit-learn (sezione predictor)</li>
+            <li>joblib (serializzazione modelli)</li>
+          </ul>
+
+          <h3 style="margin-top:14px">Esempio: flusso completo</h3>
+          <pre class="code-sample"><code># Flusso ridotto
+df = DataLoader("data/raw/dataset.csv").load_csv()
+df_clean = DataCleaner(df).run_all()
+summary = DataAnalyzer(df_clean).describe_all()
+DataVisualizer(df_clean).plot_distribution("age")
+DataExporter(df_clean).to_csv("data/clean/dataset_clean.csv")
+</code></pre>
+        </div>
+
+        <!-- RIGHT: sidebar with UML / files / download -->
+        <aside>
+          <div style="position:sticky; top:96px;">
+            <h3>Diagramma UML</h3>
+            <a href="p1/PlantUML.png" target="_blank" title="Apri UML">
+              <img class="uml-preview" src="p1/PlantUML.png" alt="Diagramma UML — Analisi Dati 1 (placeholder)">
+            </a>
+            <p style="margin-top:10px; color:var(--muted);">Diagramma delle classi: DataLoader → DataCleaner → DataAnalyzer → DataVisualizer → DataExporter → Predictor</p>
+
+            <h3 style="margin-top:18px;">File sorgenti inclusi</h3>
+            <div class="file-list" role="list">
+              <div class="file-item" role="listitem">
+                <div>data_loader.py</div><div class="badge">Caricamento</div>
+              </div>
+              <div class="file-item">
+                <div>data_cleaner.py</div><div class="badge">Pulizia</div>
+              </div>
+              <div class="file-item">
+                <div>data_analyzer.py</div><div class="badge">Analisi</div>
+              </div>
+              <div class="file-item">
+                <div>data_visualizer.py</div><div class="badge">Visual</div>
+              </div>
+              <div class="file-item">
+                <div>data_exporter.py</div><div class="badge">Export</div>
+              </div>
+              <div class="file-item">
+                <div>predictor.py</div><div class="badge">ML</div>
+              </div>
+              <div class="file-item">
+                <div>main.py</div><div class="badge">Pipeline</div>
+              </div>
+            </div>
+
+            <h3 style="margin-top:18px;">Link rapidi</h3>
+            <div style="display:flex; gap:8px; flex-direction:column;">
+              <a class="btn" href="p1/PlantUML.png" download>PlantUML (download)</a>
+              <a class="btn" href="p1/techdoc.md" download>Technical Overview (md)</a>
+              <a class="btn" href="docs/plots/dist.png" target="_blank">Esempio grafico (dist)</a>
+            </div>
+
+            <h3 style="margin-top:18px;">Badge & Stato</h3>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+              <img src="assets/badges/python.svg" alt="python" style="height:28px">
+              <img src="assets/badges/pandas.svg" alt="pandas" style="height:28px">
+              <span class="badge">1000 rows</span>
+              <span class="badge">v1.0</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- SECTION: Risultati & Screenshot -->
+    <section style="margin:36px 0;">
+      <h2>Screenshot & Output</h2>
+      <p class="hero-sub">Esempi dei plot generati ed esportati dalla libreria (PNG).</p>
+
+      <div class="exp-list" style="margin-top:18px;">
+        <div class="exp-card">
+          <img src="docs/plots/dist.png" alt="Istogramma esempio" style="width:100%; border-radius:8px; display:block; margin-bottom:10px;">
+          <div><strong>Istogramma distribuzione (age)</strong></div>
+          <div class="cert-body">Visualizza la distribuzione delle età dopo pulizia e imputazione.</div>
+        </div>
+
+        <div class="exp-card">
+          <img src="docs/plots/trend_sales.png" alt="Trend sales" style="width:100%; border-radius:8px; display:block; margin-bottom:10px;">
+          <div><strong>Trend temporale (sales)</strong></div>
+          <div class="cert-body">Trend giornaliero aggregato con rolling average.</div>
+        </div>
+
+        <div class="exp-card">
+          <img src="docs/plots/top_location.png" alt="Top location" style="width:100%; border-radius:8px; display:block; margin-bottom:10px;">
+          <div><strong>Top Location</strong></div>
+          <div class="cert-body">Bar chart delle location con media revenue più alta.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Conclusione, CTA -->
+    <section style="margin:40px 0;">
+      <h2>Conclusione & prossimi passi</h2>
+      <p>
+        Questo progetto fornisce una base solida per l'analisi dati su dataset di piccole/medie dimensioni.
+        Le estensioni consigliate sono: test unitari (pytest), pipeline CI (GitHub Actions), integrazione Streamlit/Flask per dashboard.
+      </p>
+
+      <div style="margin-top:12px;">
+        <a class="btn primary" href="#" onclick="openRepo(event)">Apri repository su GitHub</a>
+        <a class="btn" href="p1/techdoc.md" download>Scarica overview tecnica</a>
+      </div>
+    </section>
+
+  </main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <!-- role="contentinfo" → indica al screen reader che questo è il footer -->
+  <div class="socials" aria-hidden="false">
+    <!-- Contatti social → aria-hidden false perché utili a screen reader -->
+
+    <a class="social-btn" href="https://www.linkedin.com/in/alessio-ventura-a11547233/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <!-- Link LinkedIn -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4.99v14H.5V8zm7.5 0h4.78v2.02h.07c.66-1.25 2.28-2.57 4.69-2.57 5.01 0 5.93 3.3 5.93 7.59V22H18.2v-6.51c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V22H8V8z"/>
+      </svg>
+      <!-- Icona SVG LinkedIn -->
+    </a>
+
+      <a class="social-btn" href="https://github.com/AleVented" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 .5C5.73.5.96 5.27.96 11.54c0 4.86 3.15 8.99 7.52 10.44.55.1.75-.24.75-.53 0-.26-.01-1.12-.02-2.03-3.06.67-3.71-1.31-3.71-1.31-.5-1.25-1.23-1.58-1.23-1.58-.99-.68.08-.67.08-.67 1.09.08 1.66 1.12 1.66 1.12.97 1.66 2.55 1.18 3.17.9.1-.7.38-1.17.69-1.44-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.17 1.12-2.94-.11-.28-.49-1.41.11-2.94 0 0 .92-.29 3.02 1.12a10.42 10.42 0 0 1 5.5 0c2.1-1.41 3.01-1.12 3.01-1.12.6 1.53.22 2.66.11 2.94.69.77 1.12 1.74 1.12 2.94 0 4.22-2.57 5.15-5.02 5.42.39.33.74.97.74 1.96 0 1.41-.01 2.54-.01 2.88 0 .29.2.64.76.53 4.36-1.45 7.51-5.58 7.51-10.44C23.04 5.27 18.27.5 12 .5Z"/>
+        </svg>
+      <!-- Icona SVG GitHub -->
+    </a>
+
+    <a class="social-btn" href="mailto:ventura2001lavoro@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 13.065 2 6.75V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6.75l-10 6.315ZM22 6H2l10 6 10-6Z"/>
+      </svg>
+      <!-- Icona email -->
+    </a>
+  </div>
+
+  <small>© 2025 – Portfolio di Alessio Ventura</small>
+  <!-- Copyright -->
+
+</footer>
+
+  <script>
+    // Sostituisci qui con il link reale della repo
+    const REPO_URL = "https://github.com/AleVented/004-DataAnalysis-1";
+
+    function openRepo(e){
+      if(e) e.preventDefault();
+      window.open(REPO_URL, "_blank");
+    }
+
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

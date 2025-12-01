@@ -1,0 +1,13 @@
+DataLoader ---> DataCleaner
+        (fornisce il DataFrame)
+
+DataCleaner ---> DataAnalyzer
+        (fornisce il DataFrame ripulito)
+
+DataAnalyzer ---> DataVisualizer
+        (fornisce dati aggregati / Series / Correlazioni)
+
+DataVisualizer ---> DataExporter
+        (fornisce la figura generata da salvare)
+
+SimplePredictor ---> usa il df pulito dal DataCleaner
