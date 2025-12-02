@@ -48,8 +48,9 @@
 
       <nav class="top-nav" role="navigation" aria-label="Main navigation">
         <a class="nav-link" href="/index.html">Home</a>
-        <a class="nav-link" href="/about.html">Chi sono</a>
-        <a class="nav-link" href="/contact.html">Contatti</a>
+        <a class="nav-link" href="#explanation">Spiegazione</a>
+        <a class="nav-link" href="#results">Risultati</a>
+        <a class="nav-link" href="#conclusion">Conclusioni</a>
         <a id="open-repo" class="nav-link" href="#" onclick="openRepo(event)">Apri repository</a>
       </nav>
     </div>
@@ -67,10 +68,10 @@
       </p>
 
       <div class="meta-kv" style="margin-top:18px;">
-        <div class="kv"><strong>Stack:</strong> Python • pandas • matplotlib</div>
-        <div class="kv"><strong>Files:</strong> data_loader, data_cleaner, data_analyzer, data_visualizer, data_exporter, predictor, main</div>
+        <div class="kv"><strong>Stack:</strong> Python • pandas • matplotlib • scikit-learn</div>
+        <div class="kv"><strong>Files:</strong> data_loader.py, data_cleaner.py, data_analyzer.py, data_visualizer.py, data_exporter.py, predictor.py, main.py, dataset.csv</div>
         <div class="kv"><strong>Dataset:</strong> 1000 righe, valori misti (numerici & categorici)</div>
-        <div class="kv"><strong>Output:</strong> grafici PNG, CSV pulito, analisi</div>
+        <div class="kv"><strong>Output:</strong> CSV pulito, analisi, grafici .PNG, file .JSON</div>
       </div>
 
       <div style="margin-top:18px;">
@@ -81,10 +82,10 @@
     </section>
 
     <!-- MAIN CONTENT: two columns -->
-    <section style="margin:28px 0;">
+    <section id="explanation" style="margin:28px 0;">
       <div class="two-col">
 
-        <!-- LEFT: detailed technical explanation -->
+        <!-- LEFT: detailed technical explanation -->  
         <div>
           <h2>Spiegazione tecnica dettagliata</h2>
           <p>
@@ -284,16 +285,16 @@ DataExporter(df_clean).to_csv("data/clean/dataset_clean.csv")
             <div style="display:flex; gap:8px; flex-direction:column;">
               <a class="btn" href="p1/PlantUML.png" download>PlantUML (download)</a>
               <a class="btn" href="p1/techdoc.md" download>Technical Overview (md)</a>
-              <a class="btn" href="docs/plots/dist.png" target="_blank">Esempio grafico (dist)</a>
+              <a class="btn" href="p1/daily_screen_time.png" target="_blank">Esempio grafico (dist)</a>
             </div>
 
             <h3 style="margin-top:18px;">Badge & Stato</h3>
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
               <span class="badge primary">Python</span>
-              <span class="badge tech">Pandas</span>
-              <span class="badge tech">Matplotlib</span>
-              <span class="badge tech">Scikit-learn</span>
-              <span class="badge status">Completato</span>
+              <span class="badge tech">📚 pandas</span>
+              <span class="badge tech">📚 matplotlib</span>
+              <span class="badge tech">📚 scikit-learn</span>
+              <span class="badge status">✅ Completato</span>
             </div>
           </div>
         </aside>
@@ -302,7 +303,7 @@ DataExporter(df_clean).to_csv("data/clean/dataset_clean.csv")
     </section>
 
     <!-- SECTION: Risultati & Screenshot -->
-    <section style="margin:36px 0;">
+    <section id="results" style="margin:36px 0;">
       <h2>Screenshot & Output</h2>
       <p class="hero-sub">Esempi dei plot generati ed esportati dalla libreria (PNG).</p>
 
@@ -328,11 +329,14 @@ DataExporter(df_clean).to_csv("data/clean/dataset_clean.csv")
     </section>
 
     <!-- SECTION: Conclusione, CTA -->
-    <section style="margin:40px 0;">
+    <section id="conclusion" style="margin:40px 0;">
       <h2>Conclusione & prossimi passi</h2>
       <p>
-        Questo progetto fornisce una base solida per l'analisi dati su dataset di piccole/medie dimensioni.
-        Le estensioni consigliate sono: test unitari (pytest), pipeline CI (GitHub Actions), integrazione Streamlit/Flask per dashboard.
+        Questo progetto fornisce una base solida per l'analisi dati su dataset di piccole/medie dimensioni. 
+        Benché l'implementazione attuale contenga classi sviluppate ad hoc per il dataset trattato, ciò ha fornito l'ispirazione per il prossimo passo evolutivo: 
+        la creazione di un progetto "master" con file sorgenti e classi completamente agnostiche. 
+        L'obiettivo è stabilire una libreria personale di analisi dati riutilizzabile e pre-pulita per futuri task. 
+        Estensioni future includono l'implementazione di test unitari (pytest), pipeline CI e integrazione di dashboard (Streamlit/Flask).
       </p>
 
       <div style="margin-top:12px;">
