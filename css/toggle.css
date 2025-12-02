@@ -2,10 +2,10 @@
    theme-toggle.css — DARK/LIGHT THEME TOGGLE
 ======================================================================================= */
 .theme-toggle {
-  width: 40px; 
-  height: 40px;
+  width: 55px; 
+  height: 55px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: none;
   background: transparent;
   padding: 0;
   color: var(--text);
@@ -31,11 +31,12 @@
 }
 
 .theme-toggle img {
-  display: block;      /* rimuove eventuali spazi bianchi sotto l’immagine */
-  width: 22px;
-  height: 22px;
-  background: transparent; /* sicuro */
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  pointer-events: none;
 }
+
 
 
 

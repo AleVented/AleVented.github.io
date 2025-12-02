@@ -5,17 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Analisi Dati: Dataset 1000-righe (Python) — Portfolio</title>
 
-  <!-- CSS (includi i file che hai fornito) -->
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/topbar.css" />
-  <link rel="stylesheet" href="css/hero.css" />
-  <link rel="stylesheet" href="css/section.css" />
-  <link rel="stylesheet" href="css/cards.css" />
-  <link rel="stylesheet" href="css/utilities.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/badges.css" />
+  <!-- CSS esterno (mantieni il file style.css così com'è) -->
+  <link rel="stylesheet" href="main.css">
 
   <style>
     /* piccole override per la pagina progetto */
@@ -52,6 +43,9 @@
         <a class="nav-link" href="#results">Risultati</a>
         <a class="nav-link" href="#conclusion">Conclusioni</a>
         <a id="open-repo" class="nav-link" href="#" onclick="openRepo(event)">Apri repository</a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema" aria-live="polite">
+          <span class="visually-hidden">Cambia tema</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -393,5 +387,6 @@ DataExporter(df_clean).to_csv("data/clean/dataset_clean.csv")
     // year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
