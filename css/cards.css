@@ -58,6 +58,8 @@
 
 .cert-title { font-weight: 700; color: var(--text); font-size: 1rem; }
 .cert-body  { color: var(--muted);  font-size: 0.9rem; }
+.cert-date  { color: var(--muted);  font-size: 0.7rem; 
+              position: absolute; top: 10px; right: 14px; }
 
 /* Tooltip automatico per card con PDF */
 .timeline-card[data-pdf]:hover::after {
