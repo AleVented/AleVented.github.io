@@ -296,36 +296,12 @@
 
   <div class="cert-list">
     <!-- Container per tutte le certificazioni, stile grid/flex -->
-    
-    <article class="cert-card">
-      <!-- Ogni certificazione singola -->
-      <div class="timeline-card" data-pdf="certifications/eplan.pdf">
-        <!-- timeline-card → interattiva, JS la rende cliccabile se data-pdf presente -->
-        <h3 class="cert-title">EPLAN P8</h3>
-        <!-- Titolo certificazione -->
-        <p class="cert-body">Corso eplan electric P8 base</p>
-        <!-- Descrizione breve -->
-      </div>
-    </article>
 
     <article class="cert-card">
-      <div class="timeline-card" data-pdf="certifications/cambridge.pdf">
-        <h3 class="cert-title">INGLESE B2</h3>
-        <p class="cert-body">First Certificate in English</p>
-      </div>
-    </article>
-
-    <article class="cert-card">
-      <div class="timeline-card" data-pdf="certifications/comau.pdf">
-        <h3 class="cert-title">ROBOTICA COMAU</h3>
-        <p class="cert-body">Comau use and programming</p>
-      </div>
-    </article>
-
-    <article class="cert-card">
-      <div class="timeline-card" data-pdf="certifications/solidworks.pdf">
-        <h3 class="cert-title">SOLIDWORKS 3D</h3>
-        <p class="cert-body">ECLD - CAD 3D meccanico</p>
+      <div class="timeline-card" data-pdf="certifications/EPLAN Upd New Version 26.pdf">
+        <h3 class="cert-title">EPLAN P8 2026</h3>
+        <p class="cert-body">EPLAN Update New Version '26</p>
+        <a class="cert-date">18/02/2026</a>
       </div>
     </article>
 
@@ -333,23 +309,61 @@
       <div class="timeline-card" data-pdf="certifications/d-fmea.pdf">
         <h3 class="cert-title">D-FMEA</h3>
         <p class="cert-body">Design Failure Mode and Effects Analysis</p>
+        <a class="cert-date">18/07/2024</a>
       </div>
     </article>
 
     <article class="cert-card">
-      <div class="timeline-card" data-pdf="certifications/EPLAN Upd New Version 26.pdf">
-        <h3 class="cert-title">EPLAN P8 2026</h3>
-        <p class="cert-body">EPLAN Update New Version '26</p>
+      <div class="timeline-card" data-pdf="certifications/eplan.pdf"> 
+        <h3 class="cert-title">EPLAN P8</h3>
+        <p class="cert-body">Corso eplan electric P8 base</p>
+        <a class="cert-date">16/05/2024</a>
       </div>
     </article>
 
     <article class="cert-card">
-      <div class="timeline-card" data-pdf="certifications/EPLAN Upd New Version 26.pdf">
-        <h3 class="cert-title">PROVA</h3>
-        <p class="cert-body">PROVA</p>
-        <header class="cert-date">2025</header>
+      <div class="timeline-card" data-pdf="certifications/solidworks.pdf">
+        <h3 class="cert-title">SOLIDWORKS 3D</h3>
+        <p class="cert-body">ECLD - CAD 3D meccanico</p>
+        <a class="cert-date">09/06/2023</a>
       </div>
     </article>
+
+    <article class="cert-card">
+      <div class="timeline-card" data-pdf="certifications/comau.pdf">
+        <h3 class="cert-title">ROBOTICA COMAU</h3>
+        <p class="cert-body">Comau use and programming</p>
+        <a class="cert-date">13/04/2023</a>
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <!-- Ogni certificazione singola -->
+      <div class="timeline-card" data-pdf="certifications/cambridge.pdf">
+        <!-- timeline-card → interattiva, JS la rende cliccabile se data-pdf presente -->
+        <h3 class="cert-title">INGLESE B2</h3>
+        <!-- Titolo certificazione -->
+        <p class="cert-body">First Certificate in English</p>
+        <!-- Descrizione breve -->
+        <a class="cert-date">04/03/2024</a>
+        <!-- Data certificazione, posizionata in alto a destra via CSS -->
+      </div>
+    </article>
+
+  <!-- FUNZIONAMENTO CARD CERTIFICAZIONI_
+       - Ogni certificazione è un <article class="cert-card">
+       - All’interno c’è una <div class="timeline-card" data-pdf="..."> che contiene titolo, descrizione e data.
+       - Lo script.js ascolta i click su .timeline-card e, se data-pdf è presente, apre il PDF corrispondente.
+       - Per aggiungere nuove certificazioni basta duplicare l’articolo e aggiornare i dati (titolo, descrizione, data, PDF).
+    <article class="cert-card"> Ogni certificazione singola
+      <div class="timeline-card" data-pdf="certifications/cambridge.pdf">
+        <h3 class="cert-title">INGLESE B2</h3>
+        <p class="cert-body">First Certificate in English</p>
+        <a class="cert-date">04/03/2024</a>
+      </div>
+    </article>
+  -->
+
   </div>
 </section>
 
