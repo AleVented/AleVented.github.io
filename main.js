@@ -21,6 +21,7 @@ import { initThemeToggle } from './js/themeToggle.js';
 import { initSmoothAnchors } from './js/smoothAnchors.js';
 import { initTimelineToggle, respectReducedMotion } from './js/cards.js';
 import { initScrollProgress } from './js/scrollProgress.js';
+import { initGoatCounter, showCurrentYear } from './js/counter&data.js';
 import { $, $all, getTopOffset, scrollToElementWithOffset, wait, safeOpen } from './js/utils.js';
 
 /**
@@ -78,6 +79,16 @@ function init() {
   // Barra di progresso scroll
   // -----------------------------
   initScrollProgress();
+
+  // -----------------------------
+  // Inizializzazione GoatCounter
+  // -----------------------------
+  initGoatCounter();
+
+  // -----------------------------
+  // Inizializzazione CurrentYear
+  // -----------------------------
+  showCurrentYear();
 }
 
 /* ---------- fine main.js ---------- */
