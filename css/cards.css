@@ -1,8 +1,38 @@
 /* =======================================================================================
-   cards.css — ESPERIENZE, FORMAZIONE, CERTIFICAZIONI, PROGETTI
+   cards.css — COMPETENZE,ESPERIENZE, FORMAZIONE, CERTIFICAZIONI, PROGETTI
 ======================================================================================= */
 
-/* ===== 7.1 — Esperienze / Formazione ===== */
+/* ===== 7.1 — Competenze ===== */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: flex-start;
+}
+
+.skill-card {
+  flex: 0 1 30%;
+  min-width: 180px;
+  background: var(--panel);
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(212,175,55,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 24px 45px rgba(212,175,55,0.15);
+}
+
+.skill-title { font-weight: 700; color: var(--text); font-size: 1rem; }
+.skill-body  { color: var(--muted);  font-size: 0.9rem; }
+
+/* ===== 7.2 — Esperienze / Formazione ===== */
 .exp-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -31,7 +61,7 @@
 .exp-card:nth-child(even) { transform: translateY(18px); }
 
 
-/* ===== 7.2 — Certificazioni ===== */
+/* ===== 7.3 — Certificazioni ===== */
 .cert-list {
   display: flex;
   flex-wrap: wrap;
@@ -100,7 +130,7 @@
   z-index: 10;
 }
 
-/* ===== 7.3 — Progetti ===== */
+/* ===== 7.4 — Progetti ===== */
 .project-card {
   background: var(--panel);
   padding: 18px;
